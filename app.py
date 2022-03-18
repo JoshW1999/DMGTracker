@@ -233,8 +233,6 @@ def update_match_history():
 
 	old_matches = ast.literal_eval(html.unescape(request.values.get('matches')))
 	new_matches = new_get_recent_games[0]
-	
-
 	matches = old_matches + new_matches
 
 	old_recent_game_stats = ast.literal_eval(html.unescape(request.values.get('recent_game_stats')))
