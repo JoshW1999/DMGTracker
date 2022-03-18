@@ -1,0 +1,322 @@
+body{ 
+	background: linear-gradient(to right, #A8A9AD, #003b59);
+	background-attachment: fixed;
+	margin: 0;
+
+	height: 100%;
+	max-height: 100%;
+}
+
+.navbar .search-nav .secondary-search {
+	display: flex; 
+}
+
+.not-in-game .container{
+	width: 40%;
+	margin: auto;
+
+	padding: 70px 0;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	background-color: white;
+
+	border: 1px solid grey;
+
+	text-align: center;
+	font-style: bold;
+	font-size: 32px;
+}
+
+.in-game .container{
+	margin: auto;
+	margin-top: 100px;
+
+	padding: 0;
+
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+
+	background-color: white;
+
+	border: 1px solid grey;
+
+	text-align: center;
+	font-style: bold;
+	font-size: 32px;
+}
+
+.in-game table .team-names .champ-img{
+	width: 26px;
+	height: 26px;
+
+	margin-top: 10px;
+	float: left;
+}
+
+.in-game table .team-names .champ-img img{
+
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+
+}
+
+.in-game table .team-names .champ-img{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+
+	margin-top: 10px;
+	float: left;
+}
+
+.in-game table .team-names .summoner-name{
+	font-size: 16px;
+	padding-top: 10px;
+	margin-top: 0;
+
+	padding-left: 10px;
+
+	color: grey;
+	text-align: left;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.in-game table .team-names{
+	width: 250px;
+}
+
+.in-game table .team-names .summ-spells{
+	display: block;
+	padding-left: 4px;
+	width: 20px;
+	float: left;
+}
+
+.in-game table .team-names .summ-spells img{
+	width: 20px;
+	height: 20px;
+
+	border: 1px solid grey;
+	border-radius: .5em;
+
+}
+
+.in-game table .team-names .runes{
+	width: 24px;
+	float: left;
+
+}
+
+.in-game table .team-names .runes img{
+	width: 20px;
+	height: 20px;
+
+
+}
+
+.in-game table .bans img{
+	width: 20px;
+	height: 20px;
+}
+
+.in-game .prelim-details p{
+	font-size: 12px;
+	text-align: center;
+
+}
+
+.in-game .prelim-details .game-type{
+	font-weight: bold;
+	font-size: 16px;
+}
+
+.in-game .prelim-details{
+	display: inline-flex;
+	width: 12vw;
+	justify-content: space-between;
+	align-items: center; 
+
+}
+
+.in-game table .ranks{
+	width: 200px;
+	padding-left: .5em;
+}
+
+.in-game table .ranks img{
+	width: 20px;
+	height: 20px;
+	float: left;
+
+	padding-left: 50px;
+}
+
+.in-game table .ranks p{
+	float: left;
+	margin-top: 5px;
+	padding-left: 2px;
+}
+
+table{ 
+	border-collapse: collapse;
+	width: 40vw;
+	min-width: 400px; 
+}
+
+td{
+	font-size: 10px;
+	color: grey;
+	text-align: center; 
+
+	padding:0px; 
+	margin:0px;	
+
+	padding: 5px;
+
+}
+
+th{
+	background-color: white;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+
+	font-size: 16px;
+
+	text-align: center;
+	color: grey;
+}
+
+.tooltiptext{
+	visibility: hidden; 
+	width: auto; 
+
+	font-size: 12px;
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+
+	text-align: left; 
+
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	padding: 5px 5px;
+
+	position: absolute; 
+	z-index: 3; 	
+}
+
+.tooltiptext-summoner{
+	visibility: hidden; 
+
+	max-width: 190px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.spell-name{
+	color: gold;
+	font-size: 16px;
+	text-align: center;
+}
+
+.spell-description{
+	font-size: 12px;
+	text-align: left;
+}
+
+.rune-name{
+	color: gold;
+	font-size: 16px;
+	text-align: center;
+}
+
+.rune-details{
+	font-size: 12px;
+	text-align: left;
+
+}
+
+.champ-img:hover .tooltiptext{
+	visibility: visible;
+}
+
+.champ-img .tooltiptext:hover{
+	visibility: hidden;
+}
+
+.summ-img:hover .tooltiptext-summoner{
+	visibility: visible; 
+}
+
+.summ-img .tooltiptext-summoner:hover{
+	visibility: hidden;
+}
+
+.runes-img:hover .tooltiptext{ 
+	visibility: visible; 
+}
+
+.runes-img .tooltiptext:hover{
+	visibility: hidden; 
+}
+
+.go-back{
+	font-size: 16px;
+
+	color: blue;
+
+	text-decoration: none; 
+
+	padding: 5px;
+
+	border: 1px solid grey;
+
+}
+
+.go-back:hover{
+	cursor: pointer; 
+	font-weight: bold;
+
+	background-color: grey;
+}
+
+.player-link{
+	text-decoration: none; 
+}
+
+.player-link:hover{
+	text-decoration: underline;
+	text-decoration-color: grey;
+}
+
+.pre-header{ 
+	display: inline-flex;
+	width: 35vw;
+	min-width: 400px;
+	justify-content: space-between;
+}

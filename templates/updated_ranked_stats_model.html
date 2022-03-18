@@ -1,0 +1,62 @@
+<div id='ranked_stats'>
+	<!-- model-->
+	<div class='stats-header'>	
+
+		<p>Queue Statistics ({{total_games}} Games)</p>
+
+	</div>
+	{% for x in champs_played %}
+
+
+	<div class='ranked-stats-row'>
+		<div class='champ-img'>	
+			<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{x}}_0.jpg">
+		</div>
+
+		<div class='champ-name'>
+			<p>{{x}}</p>
+		</div>
+
+		<div class='champ-cs-stats'>
+			<p class='avg-champ-cs'> CS: {{'{:.2f}'.format(avg_cs[x]/games_played[x])}}</p>
+			<p class='champ-csm'>({{'{:.2f}'.format(((avg_cs[x])/(in_game_time[x]/60)))}}/min)</p>
+		</div>
+
+
+		<div class='champ-kda-stats'>
+
+			{% if kda[x][1] == 0 %}
+
+			<p class='kda-orange'>Perfect KDA</p>
+
+			{% elif ((kda[x][0] + kda[x][2])/kda[x][1]) >= 5.00 %}
+
+			<p class='kda-orange'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+
+			{% elif ((kda[x][0] + kda[x][2])/kda[x][1]) >= 3.00 %}
+
+			<p class='kda-green'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+
+			{% else %}
+			<p class='kda-plain'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+			{% endif %}
+
+			<p class='avg-kda'>{{'{:.1f}'.format(kda[x][0]/games_played[x])}}/{{'{:.1f}'.format(kda[x][1] / games_played[x])}}/{{'{:.1f}'.format(kda[x][2] / games_played[x])}}</p>
+		</div>
+
+		<div class='champ-wr-stats'>
+
+			{% if wr[x] >= 60 %}
+			<p class='wr-red'>{{wr[x]}}%</p>
+			{% else %}
+			<p class='wr-plain'>{{wr[x]}}%</p>
+			{% endif %}
+
+			<p class='games-played'>{{games_played[x]}} Played</p>
+		</div>
+
+	</div>
+
+
+	{% endfor %}
+</div>

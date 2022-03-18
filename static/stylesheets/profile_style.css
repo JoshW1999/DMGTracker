@@ -1,0 +1,1376 @@
+/*<img src="/static/images/data/dragontail-12.1.1/dragontail-12.1.1/12.1.1/img/profileicon/{{ prof }}.png">*/
+
+
+body{ 
+	background: linear-gradient(to right, #A8A9AD, #003b59);
+	background-attachment: fixed;
+	margin: 0;
+
+	min-width: 900px;
+	height: 100%;
+	max-height: 100%;
+}
+
+.navbar .search-nav .secondary-search {
+	display: flex; 
+}
+
+
+.top-section .summoner-icon img{
+	width: 200px;
+	height: 200px;
+}
+
+.top-section{
+	/*margin: 50px 0px 0px 50px;*/
+	
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+	
+	background-color: white;
+
+	margin-top: 140px;
+}
+
+.top-section .summoner-name{
+	color: black;
+	font-family: arial;
+	font-weight: bold; 
+	font-size: 40px;
+	
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+	float: left;
+	
+	padding-left: 20px;
+	margin-top: -30px;
+
+	width: 450px;
+
+}
+
+.top-section .summoner-icon{
+	float: left;
+	padding-left: 5px;
+	padding-top: 5px;
+}
+
+/* Clearfix */
+.top-section:before,
+.top-section:after {
+    content: " ";
+    display: table;
+}
+
+.top-section:after {
+    clear: both;
+}
+.top-section {
+    *zoom: 1;
+    float: left;
+    padding-right: 20px;
+    width: 700px;
+}
+
+.top-section .live-game .button{
+	float: left;
+	margin-left: 20px;
+
+	text-decoration: none;
+
+	text-align: center;
+	
+	font-family: arial;
+	font-size: 16px;
+	
+	cursor: pointer;
+	
+	border: 1px solid grey;
+	border-radius: 5px;
+
+	background-color: #2196F3;
+	color: white;
+
+	width: 100px;
+	height: 50px;
+}
+
+.top-section .live-game .button:hover{
+	background-color: #b8ceed;
+}
+
+.top-section .update-profile button{
+	margin-left: 20px;
+	font-size: 16px;
+	font-family: arial;
+
+	cursor: pointer;
+
+	border: 1px solid grey;
+	border-radius: 5px;
+
+	background-color: #2196F3;
+	color: white;
+
+	width: 100px;
+	height: 50px;
+}
+
+.top-section .update-profile button:hover{
+	background-color: #b8ceed;
+
+}
+
+.top-section .summoner-level{
+	height: 25px;
+	width: 50px;
+	
+	background-color: black;
+	border: 1px solid gold;
+
+	position: relative;
+	left: 80px;
+	top: 32px;
+
+	margin-top: 5px;
+
+}
+
+.top-section .summoner-level p{ 
+	text-align: center;
+	color: gold;
+	position: absolute;
+
+	width: inherit;
+	height: inherit;
+	padding-top: 5px;
+
+	box-sizing: border-box;
+
+	margin: 0;
+}
+
+.ranked-solo {
+
+	width: 345px;
+	height: auto;
+
+
+
+	top: 42%;
+	left: 2.5%;
+
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+	background-color: white;
+
+}
+
+.ranked-solo .ranked-solo-details{
+	float: left;
+
+	font-family: arial;
+
+	margin-top: 10%;
+
+}
+
+.ranked-solo .ranked-solo-details p{
+	margin: 0;
+	margin-top: 5px;
+}
+
+.ranked-solo .ranked-solo-details .solo-type{
+	font-size: 10px;
+	color: grey;
+}
+
+.ranked-solo .ranked-solo-details .solo-rank-and-tier{
+	color: #2196F3;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.ranked-solo .ranked-solo-details .solo-lp{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.ranked-solo .ranked-solo-details .solo-wins-losses{
+	font-size: 12px;
+	color: grey;
+}
+
+.ranked-solo .ranked-solo-details .solo-win-ratio{
+	font-size: 12px;
+	color: grey;
+}
+
+.ranked-solo .ranked-solo-logo img{
+	width: 200px;
+	height: 200px;
+	float: left;
+
+}
+
+
+
+
+.ranked-flex{
+
+	width: 345px;
+
+	left: 21.5%;
+	top: 42%;
+
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+	background-color: white;
+}
+
+.ranked-flex .ranked-flex-logo img{
+	width: 200px;
+	height: 200px;
+	float: left;
+}
+
+.ranked-flex .ranked-flex-details{
+	float: left;
+	font-family: arial; 
+	margin-top: 10%;
+
+}
+
+.ranked-flex .ranked-flex-details p{
+	margin: 0;
+	margin-top: 5px;
+}
+
+.ranked-flex .ranked-flex-details .flex-type{
+	font-size: 10px;
+	color: grey;
+}
+
+.ranked-flex .ranked-flex-details .flex-rank-and-tier{
+	color: #2196F3;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.ranked-flex .ranked-flex-details .flex-lp{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+.ranked-flex .ranked-flex-details .flex-wins-losses{
+	font-size: 12px;
+	color: grey;
+}
+
+.ranked-flex .ranked-flex-details .flex-win-ratio{
+	font-size: 12px;
+	color: grey;
+}
+
+
+.ranked-stats {
+	width: 375px;
+
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+	background-color: white;
+
+}
+
+.ranked-stats .stats-header{
+	width: inherit;
+	text-align: center; 
+	border-bottom: 1px solid black;
+	height: 30px;
+}
+
+.ranked-stats .ranked-stats-row{
+	border-bottom: 1px solid black;
+	margin-top: 5px;
+
+	padding-left: 10px;
+	padding-right: 10px;
+
+}
+
+.ranked-stats .ranked-stats-row .champ-kda-stats{
+	font-size: 12px;
+	padding-left: 20px;
+	float: left;
+}
+
+.ranked-stats .ranked-stats-row .champ-kda-stats .kda-orange{
+	color: orange;
+}
+
+.ranked-stats .ranked-stats-row .champ-kda-stats .kda-green{
+	color: green;
+}
+
+.ranked-stats .ranked-stats-row .champ-kda-stats .kda-plain{
+	color: grey;
+}
+
+.ranked-stats .ranked-stats-row .champ-wr-stats{
+	font-size: 12px;
+	padding-left: 20px;
+	float: left;
+}
+
+.ranked-stats .ranked-stats-row .champ-wr-stats .wr-red{
+	color: red;
+}
+
+.ranked-stats .ranked-stats-row .champ-wr-stats .wr-plain{
+	color: grey;
+}
+
+.ranked-stats .champ-name{
+	float: left;
+	width: 80px;
+}
+
+.ranked-stats .champ-img{
+	float: left;
+}
+
+.ranked-stats .ranked-stats-row{
+	height: 65px;
+
+}
+
+.ranked-stats .ranked-stats-row .champ-name p{
+	margin-top: 8px;
+}
+
+
+.ranked-stats .ranked-stats-row .champ-name{
+	padding-bottom: 10px;
+	padding-left: 5px;
+}
+
+.ranked-stats .ranked-stats-row .champ-cs-stats{
+	float: left;
+	padding-left: 10px;
+	font-size: 12px;
+	
+}
+/*
+.ranked-stats .ranked-stats-row .champ-kda-stats{
+	float: left;
+}*/
+
+.ranked-stats img{
+	width: 50px;
+	height: 50px;
+	float: left;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 25px;
+
+}
+
+.recent-games{
+	/*float: right;*/
+
+
+	width: 612px;
+	height: auto; 
+
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+	
+	background-color: white;
+	
+}
+
+.recent-games .match-row-victory{
+
+	width: 600px;
+	height: 120px;
+
+	padding: 10px 10px 10px 0px;
+	margin: 5px;
+	
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+
+	position : relative;
+
+	background-color: #a3cfec;
+}
+
+.recent-games .match-row-defeat{
+
+	width: 600px;
+	height: 120px;
+
+	padding: 10px 10px 10px 0px;
+	margin: 5px;
+	
+	border: 1px solid grey;
+	box-sizing: border-box; 
+	border-bottom: 1px solid grey; 
+	border-radius: 5px;
+
+	position : relative;
+
+	background-color: #e2b6b3;
+}
+
+.recent-games .prelim_details{
+	font-size: 10px;
+	color: black;
+	float: left;
+	display: block;
+
+	height: 66px;
+	width: 68px;
+	overflow: hidden;
+
+	transform: translateY(17px);
+
+	text-align: center;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.recent-games .prelim_details p{
+	margin: 5px;
+
+}
+
+.recent-games .champ-icon-name{
+	width: 60px;
+	float: left;
+	font-size: 12px;	
+	padding-top: 10px;
+}
+
+.recent-games .champ-icon-name p{
+	text-align: center;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.recent-games .champ-icon-name img{
+	width: 50px;
+	height: 50px;
+	
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 25px;
+}
+
+.recent-games .summ-spells img{
+
+	width: 20px;
+	height: 20px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.recent-games .summ-spells{
+	padding-left: 5px;
+	padding-top: 15px;
+
+	float: left;
+	width: 20px;
+}
+
+
+.recent-games .runes img{
+	width: 20px;
+	height: 20px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 25px;
+
+	background-color: rgba(72,72,72,1.0);
+}
+
+.recent-games .runes{
+	padding-left: 5px;
+	padding-top: 15px;
+
+	float: left;
+	width: 30px;
+}
+
+
+.recent-games .game-score{
+	padding-left: 5px;
+	padding-right: 5px;
+	width: 74px;
+	float: left;
+	text-align: center;
+
+}
+
+.recent-games .game-score .kda{
+	font-size: 16px;
+
+	
+}
+
+.recent-games .game-score .kda-ratio{
+	font-size: 12px;
+	
+}
+
+
+.recent-games .level-cs-kp{
+	padding-left: 5px;
+	padding-top: 12px;
+
+	width: 60px;
+
+	float: left;
+
+}
+
+.recent-games .level-cs-kp p{
+	font-size: 10px;
+	text-align: center;
+
+	margin: 6px 0 6px 0;
+
+}
+
+
+.recent-games .items img{
+	width: 20px;
+	height: 20px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.recent-games .items{
+	width: 63px;
+	height: 60px;
+	float: left;
+	display: grid; 
+
+	grid-template-columns: 22px 22px 22px; 
+	grid-template-rows: 22px 22px auto;
+
+	padding-top: 20px;
+	padding-left: 10px;
+}
+
+.recent-games .expanded-details .items{
+	display: flex; 
+}
+
+.recent-games .items .wards{ 
+	width: 80px;
+}
+
+.recent-games .items .blank{
+	background-color: grey;
+}
+
+.recent-games .items .wards{
+	font-size: 10px;
+}
+
+.recent-games .ward-slot img{
+	width: 20px;
+	height: 20px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	border-radius: 5px;
+}
+
+.recent-games .ward-slot{
+	padding-top: 30px;
+	padding-left: 2px;
+	float: left
+}
+
+.recent-games .blue-team img{
+	width: 15px;
+	height: 15px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	
+}
+
+.recent-games .red-team img{
+	width: 15px;
+	height: 15px;
+
+	border: 1px solid grey;
+	box-sizing: border-box;
+	
+}
+
+.recent-games .blue-team-names{
+	font-size: 10px;
+	float: left;
+	width: 43px;
+
+	
+}
+
+.recent-games .red-team-names{
+	font-size: 10px;
+	width: 43px;
+	float: left;
+	
+}
+
+.recent-games .blue-team-names p{
+	margin: 0;
+	padding-left: 2px;
+	margin-bottom: 8px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.recent-games .red-team-names p{
+	margin: 0;
+	padding-left: 2px;
+	margin-bottom: 8px;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.recent-games .blue-team{
+	width: 15px;
+	height: 95px;
+	float: left;
+	padding-left: 10px;
+	padding-top: -15px;
+}
+
+.recent-games .red-team{
+	width: 15px;
+	height: 95px;
+	float: left;
+	padding-left: 4px;
+}
+
+/* Further Game Details */
+
+.recent-games .expand{
+	float: right;
+	overflow: hidden;
+}
+
+.recent-games .expand .drop-btn{
+	font-size: 16px;
+	
+	border: 1px solid grey;
+	outline: none;
+	
+	color: white;
+	background-color: inherit;
+
+	width: 20px;
+	height: 96px;
+
+	padding: 0;
+	margin: 0;	
+}
+
+.recent-games .expand:hover .drop-btn{
+	background: rgba(128, 128, 128, 0.3);
+	cursor: pointer;
+}
+
+.recent-games .expanded-details{
+	display: none;
+	background-color: white;
+	position: absolute;
+	float: left;
+	width: 598px;
+	height: 600px;
+
+	border: 1px solid grey;
+
+	left: -1px;
+	top: 116px;
+	z-index: 1;
+
+	padding-left: 0;
+	padding-right: 0;
+
+}
+
+.recent-games .expand:hover .expanded-details{
+	/*display: inline-block;*/
+	
+}
+
+table{
+	border: 1px solid black;
+	width: 598px;
+	border-collapse: collapse;
+}
+
+
+td{
+	font-size: 10px;
+	color: grey;
+	text-align: center; 
+
+	padding:0px; 
+	margin:0px;	
+
+}
+
+th{
+	background-color: white;
+	border-top: 1px solid grey;
+	border-bottom: 1px solid grey;
+
+	font-size: 12px;
+	text-align: center;
+	color: grey;
+}
+
+.expanded-details .table table{
+	border: 1px solid black;
+	width: 598px;
+}
+
+.expanded-details .table .red-team tr{ 
+	background-color: rgba(255,204,203,0.3);
+}
+
+.expanded-details .table .blue-team tr{ 
+	background-color: rgb(173, 216, 230, 0.3);
+}
+
+.expanded-details .table .team1-names .champ-img{
+	width: 26px;
+	height: 26px;
+
+	margin-top: 10px;
+	float: left;
+}
+
+.expanded-details .table .team1-names .champ-img img{
+
+	width: 30px;
+	height: 30px;
+	border-radius: 15px;
+
+}
+
+.expanded-details .table .team1-names .champ-img{
+	display: inline-block;
+}
+
+.expanded-details .table .team1-names td p, .expanded-details .table .team1-names .player-link p{
+	font-size: 10px;
+	padding-top: 10px;
+	color: grey;
+	text-align: left;
+
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.expanded-details .table .team1-names{
+	width: 170px;
+}
+
+.expanded-details .table .team-kdas{
+	
+	width: 50px;
+}
+
+.expanded-details .table .team-damage{
+	
+	width: 55px;
+}
+
+.expanded-details .table .team-wards{
+
+	width: 40px;
+}
+
+.expanded-details .table .team-cs{
+
+	width: 40px;
+}
+
+.expanded-details .table .team-ranks{
+	width: 50px;
+
+}
+
+.expanded-details .table .items{
+	width: 160px;
+	height: 20px;
+	padding-top: 0;
+}
+
+.expanded-details .table .items img{
+	width: 20px;
+	height: 20px;
+	border-radius: 0; 
+
+}
+
+.expanded-details .table .team1-names .summ-spells{
+	padding: 0;
+	padding-left: 4px;
+	margin-top: 4px;
+
+}
+
+.expanded-details .table .team1-names .runes{
+	padding: 0;
+	padding-left: 1px;
+	margin-top: 4px;
+	width: 24px;
+}
+
+.expanded-details .objective-stats{
+	width: 597px;
+	height: 40px;
+
+	border: 1px solid grey;
+	display: flex;
+}
+
+
+.expanded-details .objective-stats .barons{
+	width: 60px;
+	height: 40px;
+}
+
+.expanded-details .objective-stats .barons img{
+	margin-top: 10px;
+	margin-left: 8px;
+	width: 20px;
+	height: 20px;
+}
+
+.expanded-details .objective-stats .barons p{
+	float: right;
+	
+	margin: 0;
+	margin-right: 4px;
+	margin-top: 12px;
+}
+
+.expanded-details .objective-stats .dragons{
+	width: 60px;
+	height: 40px;
+}
+
+.expanded-details .objective-stats .dragons img{
+	width: 20px;
+	height: 20px;
+
+	margin-top: 10px;
+	margin-left: 8px;
+}
+
+.expanded-details .objective-stats .dragons p{
+	float: right;
+	
+	margin: 0;
+	margin-right: 4px;
+	margin-top: 12px;
+}
+
+.expanded-details .objective-stats .towers{
+	width: 60px;
+	height: 40px;
+}
+
+.expanded-details .objective-stats .towers img{
+	width: 20px;
+	height: 20px;
+
+	margin-top: 10px;
+	margin-left: 8px;
+}
+
+.expanded-details .objective-stats .towers p{
+	float: right;
+	
+	margin: 0;
+	margin-right: 4px;
+	margin-top: 12px;
+}
+
+
+.expanded-details .objective-stats .kills-gold-red{
+	width: 120px;
+	height: 40px;
+
+	padding-top: 8px;
+	padding-left: 12px;
+
+	box-sizing: border-box;
+
+}
+
+.expanded-details .objective-stats .kills-gold-red p{
+	font-size: 10px;
+	width: 50px;
+
+
+}
+
+.expanded-details .objective-stats .kills-gold-red .num{
+	margin: 0;
+	float: right;
+}
+
+.expanded-details .objective-stats .kills-gold-red .label{
+	float: left;
+	margin: 0;
+}
+
+.expanded-details .objective-stats .kills-gold-blue{
+	width: 120px;
+	height: 40px;
+
+	padding-top: 8px;
+	padding-left: 12px;
+
+	box-sizing: border-box; 
+}
+
+.expanded-details .objective-stats .kills-gold-blue p{
+	font-size: 10px;
+	width: 50px;
+}
+
+.expanded-details .objective-stats .kills-gold-blue .num{
+	margin: 0;
+	float: right;
+}
+
+.expanded-details .objective-stats .kills-gold-blue .label{
+	float: left;
+	margin: 0;
+}
+
+.recent-games .load-more-btn{
+	
+	background-color: white;
+
+	width: 600px;
+	height: 30px;
+
+	margin-left: 5px;
+
+	border: 1px solid grey;
+	border-radius: 15px;
+}
+
+.recent-games .load-more-btn:hover{
+	font-weight: bold;
+	cursor: pointer;
+
+	background-color: #D3D3D3;
+}
+
+.recent-games .button-loading{
+	background: url(load_gif.gif) no-repeat 50% 50%;
+	font-size: 0;
+	pointer-events: none;
+}
+
+.recently-played-with{
+	height: auto;
+	width: 345px;
+	margin: 0;
+}
+
+.recently-played-with .title{
+	width: 345px;
+}
+
+.recently-played-with table{
+	border-spacing: 0;
+	margin: 0;
+	padding: 0;
+	width: 345px;
+}
+.recently-played-with table tr{
+	background-color: white;
+}
+
+.recently-played-with .champ-name p{
+	width: 100px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+
+}
+
+.recently-played-with .body .data p{
+	width: 50px;
+}
+
+
+.recently-played-with table tr:nth-child(odd){
+	background-color: #f2f2f2;
+}
+
+.recently-played-with .container .title{
+	margin-bottom: 0;
+	text-align: center;
+	background-color: white; 
+	box-sizing: border-box;
+	border: 1px solid black;
+	color:grey;
+}
+
+.recent-games .queue-select{
+	display: flex;
+	flex-direction: row; 
+	width: 67%;
+	justify-content: space-between;
+}
+
+.recent-games .queue-select .queue{
+	margin: 5px;
+}
+
+
+.recent-games .queue-select button{
+	width: 5em;
+	height: 2em;
+}
+
+
+
+.radio-btn{
+	background-color: #FFFFFF;
+  	border: 1px solid #4A4A4A;
+  	color: #4A5362;
+  	font-size: 14px;
+  	line-height: 26px;
+  	outline: none;
+}
+
+.radio-btn:hover{
+	cursor: pointer;
+	background: #808080;
+	color: white;
+}
+
+.radio-btn-selected {
+ 	background-color: #FFFFFF;
+  	border: 1px solid #2196F3;
+  	color: #2196F3;
+  	font-size: 14px;
+  	line-height: 26px;
+  	outline: none;
+}
+
+.load-screen{
+	display: none;
+	width: 600px;
+	height: 800px;
+
+	background: url(big_load_gif.gif) no-repeat 50% 50%;
+}
+
+.top-section{
+	grid-area: header;
+	justify-self: center;
+}
+
+.ranked-solo{
+	grid-area: main-one;
+	justify-self: end;
+	align-self: end; 
+}
+
+.ranked-flex{
+	grid-area: main-two;
+	justify-self: end;
+	align-self: end;
+}
+
+.recent-games{
+	grid-area: history;
+	justify-self: center;
+	align-self: start;
+}
+
+.recently-played-with{
+	grid-area: recent;
+	justify-self: end;
+	align-self: end;
+}
+
+.ranked-stats{ 
+	grid-area: stats;
+	align-self: start;
+}
+
+.grid-container{
+	display: grid;
+
+	/*grid-template-columns: auto auto;
+	grid-auto-rows: minmax(200px, auto);*/
+
+	grid-template-columns: 565px 377px 377px 565px;
+	grid-template-rows: auto 200px 200px auto;
+
+	grid-template-areas:
+		".   	  header  header  ."
+		"main-one history history stats"
+		"main-two history history stats"
+		"recent   history history stats"
+		". 		  history history stats"
+		".        history history .";
+
+	align-items: center;
+	/*justify-items: center;*/
+
+	grid-gap: 10px;
+	padding: 10px;
+}
+
+.player-link{
+	text-decoration: none;
+	color: black; 
+
+}
+
+.player-link:hover{
+	text-decoration: underline;
+}
+
+.team-result{
+	padding-left: 20px;
+}
+
+.team-result .victory {
+	color: #00008b;
+	float: left;
+	margin: 0;
+}
+
+.team-result .blue{
+	color: blue;
+	float: left;
+	padding-left: 5px;
+	margin: 0;
+}
+
+.team-result .defeat{
+	color: #8b0000;
+	float: left;
+	margin: 0;
+}
+
+.team-result .red{
+	color: red;
+	float: left;
+	padding-left: 5px;
+	margin: 0;
+}
+
+.tooltiptext{
+	visibility: hidden; 
+	width: auto; 
+
+	font-size: 12px;
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+
+	text-align: left; 
+
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	padding: 5px 5px;
+
+	position: absolute; 
+	z-index: 3; 	
+}
+
+.tooltiptext-item{
+	visibility: hidden; 
+
+	max-width: 240px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.tooltiptext-summoner{
+	visibility: hidden; 
+
+	max-width: 190px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.recent-games .item-name{
+	color: #7fffd4;
+	font-size: 16px;
+	text-align: center;
+}
+
+.recent-games .spell-name{
+	color: gold;
+	font-size: 16px;
+	text-align: center;
+}
+
+.recent-games .spell-description{
+	font-size: 12px;
+	text-align: left;
+}
+
+.recent-games .rune-name{
+	color: gold;
+	font-size: 16px;
+	text-align: center;
+}
+
+.recent-games .rune-details{
+	font-size: 12px;
+	text-align: left;
+}
+
+
+.champ-img:hover .tooltiptext{
+	visibility: visible;
+}
+
+.summ-img:hover .tooltiptext-summoner{
+	visibility: visible; 
+}
+
+.runes-img:hover .tooltiptext{ 
+	visibility: visible; 
+}
+
+.item-img:hover .tooltiptext-item{
+	visibility: visible;
+}
+
+.item-img .tooltiptext-item:hover{
+	visibility: hidden;
+}
+
+.summ-img .tooltiptext-summoner:hover{
+	visibility: hidden;
+}
+
+.runes-img .tooltiptext:hover{
+	visibility: hidden; 
+}
+
+.champ-img .tooltiptext:hover{
+	visibility: hidden;
+}
+
+.no-matches{
+	
+	width: 600px;
+	height: auto;
+	margin-left: 5px;
+
+}
+
+.no-matches p{
+	font-size: 24px;
+	font-weight: bold;
+
+	text-align: center; 
+	border: 1px solid grey;
+}
+
+.player-level{
+	width: 12px;
+	height: 12px;
+
+	top: -20px;
+
+	font-size: 10px;
+
+	border-radius: 5px;
+
+	background-color: rgba(0,0,0,0.5);
+	color: white;
+
+	position: relative;
+	z-index: 5;
+
+	text-align: center;
+}

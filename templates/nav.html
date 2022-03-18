@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta class="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>DMG Tracker</title>
+	<link rel="stylesheet" type="text/css" href="\static\stylesheets\navbar_style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script>
+		// Hides navbar when scrolling vertically, but navbar remains fixed when scrolling horizontally. 
+		var lastScrollTop = 0;
+
+		window.addEventListener("scroll", function(){
+			var st = window.pageYOffset || document.documentElement.scrollTop; 
+
+			if( st > lastScrollTop){
+				document.getElementById("navbar").style.top = "-150px";
+			}
+			else{ 
+				document.getElementById("navbar").style.top = "0";
+			}
+			lastScrollTop = st <= 0 ? 0 : st; 
+		}, false);
+
+	</script>
+</head>
+
+<body>
+	<div class='navbar' id='navbar'>
+
+		<div class='container'>
+
+			<nav>
+
+				<ul class='primary-nav'>
+					<form action='#' method='post'>
+						<li>
+							<a href="/" value='home-btn'>Home</a>
+						</li>
+					</form>
+
+					<li>
+						<a href="/news">News</a>
+					</li>
+
+				</ul>
+
+				<ul class='search-nav'>
+					<form action='#' method='post'>
+						<div class='server-select-dropdown'>
+
+
+							<select id='server-select' name='server-select'>
+								<option id='default-select' selected='selected' value=""></option>
+								<option value="na1">North America</option>
+								<option value="euw1">Europe West</option>
+								<option value="eun1">Europe North-East</option>
+								<option value='tr1'>Turkey</option>
+								<option value="kr">Korea</option>
+								<option value="la1">Latin America North</option>
+								<option value="la2">Latin America South</option>
+								<option value="br1">Brazil</option>
+								<option value="oc1">Oceania</option>
+								<option value="ru1">Russia</option>
+								<option value="jp1">Japan</option>
+							</select>
+
+
+							<script type="text/javascript">
+								
+								var select_options = document.getElementById('server-select');
+								for(let i = 0; i < select_options.length; i++){
+									if(select_options[i].value == "{{server}}"){
+										text_content = select_options[i].textContent; 
+										break; 
+									}
+									
+								}
+								document.getElementById('default-select').innerHTML = text_content; 
+								document.getElementById('default-select').value = '{{server}}';	
+
+							</script>
+
+
+
+						</div>
+						<div class='secondary-search'>
+							<input class='secondary-search-bar' type="text" placeholder='Name...' name="ss">
+							<button class='secondary-submit-button' type='submit' name='ssb'>Go</button>
+						</div>
+					</form>
+				</ul>
+			</nav>
+
+		</div>
+
+	</div>
+
+	{% block content %}{% endblock %}
+</body>

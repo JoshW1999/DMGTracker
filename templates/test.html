@@ -1,0 +1,27 @@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	
+<script type="text/javascript">
+	
+	function loadDecimal(){
+		$.ajax({
+			url: "/update_decimal",
+			type: "POST",
+			dataType: "json",
+			success: function(data){
+				$(random_decimal).replaceWith(data)
+			}
+		});
+	}
+
+</script>
+
+
+<div id='block'>
+	<div id='random_decimal'>
+		{{x}}
+	</div>
+
+	<div id='btn'>
+		<button onclick="loadDecimal()">Change Number</button>
+	</div>
+</div>

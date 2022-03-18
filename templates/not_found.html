@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta class="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>DMG Tracker</title>
+	<link rel="stylesheet" type="text/css" href="\static\stylesheets\not_found_style.css">
+
+</head>
+
+<body>
+
+	{% extends 'nav.html' %}
+
+	{% block content %}
+	
+	<!-- Summoner not found -->
+	<section class='not-found'>
+		
+		<div class='container'>
+
+			<p class='status'>&lsquo;{{name}}&rsquo; was not found.</p>
+			<p class='clarify'>Check spelling and ensure you're searching in the correct server.</p>
+
+		</div>
+
+	</section>
+	
+	{% endblock %}
+</body>

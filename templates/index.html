@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta class="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<link rel="shortcut icon" href="#">
+	<title>DMG Tracker</title>
+	<link rel="stylesheet" type="text/css" href="static/stylesheets/style.css">
+</head>
+<body>
+
+
+	{% extends'nav.html' %}
+
+	{% block content %}
+
+	<script type="text/javascript">
+		
+	</script>
+
+	<section class='hero'>
+
+		<div class='logo'>
+			<img src="static/images/DMGTRACKER.png">
+		</div>
+
+		<div class='main-search'>
+			<form action="#" method="post">
+
+				<div class='server-select-dropdown'>
+					<select name='server-select'>
+						<option value="na1">North America</option>
+						<option value="euw1">Europe West</option>
+						<option value="eun1">Europe North-East</option>
+						<option value='tr1'>Turkey</option>
+						<option value="kr">Korea</option>
+						<option value="la1">Latin America North</option>
+						<option value="la2">Latin America South</option>
+						<option value="br1">Brazil</option>
+						<option value="oc1">Oceania</option>
+						<option value="ru1">Russia</option>
+						<option value="jp1">Japan</option>
+					</select>
+				</div>
+
+
+				<input class='main-search-bar' type="text" placeholder='Name...' name="ps">
+				<button class='main-submit-button' type='submit' name='sb'>Go</button>
+			</form>
+		</div>
+
+		<div>
+
+		</div>
+	</section>
+
+
+	{% endblock %}
+</body>
+</html>

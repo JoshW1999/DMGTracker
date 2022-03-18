@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta class="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<title>DMG Tracker</title>
+	<link rel="stylesheet" type="text/css" href="\static\stylesheets\live_style.css">
+
+</head>
+
+<body>
+
+	{% extends 'nav.html' %}
+
+	{% block content %}
+	
+
+	{% if details is none %}
+	<!-- Summoner not in game -->
+	<section class='not-in-game'>
+		
+		<div class='container'>
+
+			<p class='status'>&lsquo;{{name}}&rsquo; is not currently in game.</p>
+			<a class='go-back' href="javascript:history.back()">Back to Profile</a>
+		</div>	
+
+	</section>
+	
+	{% else %}
+
+	<section class='in-game'>
+
+		<div class='container'>
+
+			<div class='pre-header'>	
+				<div class='prelim-details'>	
+					<p class='game-type'>{{details[0]['game_type']}}</p>
+					<p class='map'>{{details[0]['map']}}</p>
+					<p class='time-elapsed'>{{details[0]['time_elapsed']}}</p>
+				</div>
+
+				<div><a class='go-back' href="javascript:history.back()">Back to Profile</a></div>
+			</div>
+
+			<table class='red-team'>
+				
+				<tr class='header'>
+					<th class='team'>Red Team</th>
+					<th class='tier'>Tier</th>
+					<th class='bans'>Ban</th>
+				</tr>
+
+				
+				{% for n in details[1]['red_team'] %}
+				<tr>
+					<td class='team-names'>
+						<div class='champ-img'>
+							<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{details[1]["player_champs"][n]}}.png'>
+
+							<span class='tooltiptext'>{{details[1]['player_champs'][n]}}</span>
+						</div>
+
+						<div class='summ-spells'>
+							
+							<div class='summ-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{details[1]['player_summoner_details'][n][0]['image']['full']}}">
+
+								<span class='tooltiptext-summoner'>
+									<p class='spell-name'>{{details[1]['player_summoner_details'][n][0]['name']}}</p>
+									<p class='spell-description'>{{details[1]['player_summoner_details'][n][0]['description']|safe}}</p>
+								</span>
+							</div>
+
+							<div class='summ-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{details[1]['player_summoner_details'][n][1]['image']['full']}}">
+
+								<span class='tooltiptext-summoner'>
+									<p class='spell-name'>{{details[1]['player_summoner_details'][n][1]['name']}}</p>
+									<p class='spell-description'>{{details[1]['player_summoner_details'][n][1]['description']|safe}}</p>
+								</span>
+							</div>
+
+						</div>
+
+						<div class='runes'>
+							<div class='runes-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{details[1]['player_runes'][n]['primary']['icon']}}">
+
+								<span class='tooltiptext'>
+									<p class='rune-name'>{{details[1]['player_runes'][n]['primary']['name']}}</p>
+									<p class='rune-details'>{{details[1]['player_runes'][n]['primary']['longDesc']|safe}}</p>
+								</span>
+							</div>
+
+							<div class='runes-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{details[1]['player_runes'][n]['secondary']['icon']}}">
+
+								<span class='tooltiptext'>
+									<p class='rune-name'>{{details[1]['player_runes'][n]['secondary']['name']}}</p>
+									<p class='rune-details'>{{details[1]['player_runes'][n]['secondary']['longDesc']|safe}}</p>
+								</span>
+							</div>
+						</div>
+
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p class='summoner-name'>{{n}}</p></a>
+						
+					</td>
+
+					<td class='ranks'>
+
+						{% if details[1]['player_ranks'][n]['solo'] is not none %}
+						<img src="/static/images/Rank_Icons/Emblem_{{details[1]['player_ranks'][n]['solo'].split()[0]}}.png">
+						<p>{{details[1]['player_ranks'][n]['solo']}}</p>
+						
+						{% elif details[1]['player_ranks'][n]['flex'] is not none %}
+						<img src="/static/images/Rank_Icons/Emblem_{{details[1]['player_ranks'][n]['flex'].split()[0]}}.png">
+						<p>{{details[1]['player_ranks'][n]['flex']}}</p>
+						
+						{% else %}
+						<img src="/static/images/Rank_Icons/Emblem_Unranked.png">
+						<p>Level: {{details[1]['player_ranks'][n]['lvl']}}</p>
+						
+						{% endif %}
+
+					</td>
+
+					<td class='bans'>
+						
+						{% if details[1]['player_bans'][n] != 'blank' %}
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{details[1]['player_bans'][n]}}.png">
+
+							<span class='tooltiptext'>
+								{{details[1]['player_bans'][n]}}
+							</span>
+						</div>
+						{% else %}
+						<img src="/static/images/square-64.png">
+						{% endif %}
+					</td>
+
+				</tr>
+				{% endfor %}
+
+
+			</table>
+
+			<table class='blue-team'>
+
+				<tr class='header'>
+					<th class='team'>Blue Team</th>
+					<th class='tier'>Tier</th>
+					<th class='bans'>Ban</th>
+				</tr>
+
+				
+				{% for n in details[1]['blue_team'] %}
+				<tr>
+					<td class='team-names'>
+						<div class='champ-img'>
+							<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{details[1]["player_champs"][n]}}.png'>
+
+							<span class='tooltiptext'>{{details[1]['player_champs'][n]}}</span>
+						</div>
+
+						<div class='summ-spells'>
+							
+							<div class='summ-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{details[1]['player_summoner_details'][n][0]['image']['full']}}">
+
+								<span class='tooltiptext-summoner'>
+									<p class='spell-name'>{{details[1]['player_summoner_details'][n][0]['name']}}</p>
+									<p class='spell-description'>{{details[1]['player_summoner_details'][n][0]['description']|safe}}</p>
+								</span>
+							</div>
+
+							<div class='summ-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{details[1]['player_summoner_details'][n][1]['image']['full']}}">
+
+								<span class='tooltiptext-summoner'>
+									<p class='spell-name'>{{details[1]['player_summoner_details'][n][1]['name']}}</p>
+									<p class='spell-description'>{{details[1]['player_summoner_details'][n][1]['description']|safe}}</p>
+								</span>
+							</div>
+
+						</div>
+
+						<div class='runes'>
+							<div class='runes-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{details[1]['player_runes'][n]['primary']['icon']}}">
+
+								<span class='tooltiptext'>
+									<p class='rune-name'>{{details[1]['player_runes'][n]['primary']['name']}}</p>
+									<p class='rune-details'>{{details[1]['player_runes'][n]['primary']['longDesc']|safe}}</p>
+								</span>
+							</div>
+
+							<div class='runes-img'>
+								<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{details[1]['player_runes'][n]['secondary']['icon']}}">
+
+								<span class='tooltiptext'>
+									<p class='rune-name'>{{details[1]['player_runes'][n]['secondary']['name']}}</p>
+									<p class='rune-details'>{{details[1]['player_runes'][n]['secondary']['longDesc']|safe}}</p>
+								</span>
+							</div>
+						</div>
+
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p class='summoner-name'>{{n}}</p></a>
+						
+					</td>
+
+					<td class='ranks'>
+
+						{% if details[1]['player_ranks'][n]['solo'] is not none %}
+						<img src="/static/images/Rank_Icons/Emblem_{{details[1]['player_ranks'][n]['solo'].split()[0]}}.png">
+						<p>{{details[1]['player_ranks'][n]['solo']}}</p>
+						
+						{% elif details[1]['player_ranks'][n]['flex'] is not none %}
+						<img src="/static/images/Rank_Icons/Emblem_{{details[1]['player_ranks'][n]['flex'].split()[0]}}.png">
+						<p>{{details[1]['player_ranks'][n]['flex']}}</p>
+						
+						{% else %}
+						<img src="/static/images/Rank_Icons/Emblem_Unranked.png">
+						<p>Level: {{details[1]['player_ranks'][n]['lvl']}}</p>
+						
+						{% endif %}
+
+					</td>
+
+					<td class='bans'>
+						
+						{% if details[1]['player_bans'][n] != 'blank' %}
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{details[1]['player_bans'][n]}}.png">
+
+							<span class='tooltiptext'>
+								{{details[1]['player_bans'][n]}}
+							</span>
+						</div>
+						{% else %}
+						<img src="/static/images/square-64.png">
+						{% endif %}
+					</td>
+
+				</tr>
+				{% endfor %}
+
+
+			</table>
+
+		</div>
+
+	</section>
+
+	{% endif %}
+
+
+	{% endblock %}
+</body>

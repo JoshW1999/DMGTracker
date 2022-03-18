@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta class="viewport" content="width=device-width, initial-scale=1.0"></meta>
+	<link rel="shortcut icon" href="#">
+	<title>DMG Tracker</title>
+	<link rel="stylesheet" type="text/css" href="\static\stylesheets\profile_style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	
+	
+
+</head>
+<body>
+
+
+	{% extends 'nav.html' %}
+
+	{% block content %}
+
+	<div class='grid-container'>
+		<section class="top-section">
+			<div class='summoner-icon'>
+				<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/profileicon/{{ icon }}.png">
+			</div>
+			<div id='summ_name' class='summoner-name'>
+				<p>{{name}}</p>			
+			</div>
+			<div class="live-game">
+				<form action='#' method='post'>
+					<!--<button class="view-live-game">Live Game</button>-->
+					<a href="/profile/{{server}}/{{name}}/live" class='button'><p>Live Game</p></a>
+				</form>
+			</div>
+			<div class="update-profile">
+
+				<button class="update-profile-btn" onclick="javascript:window.location.reload();">Update</button>
+			
+			</div>
+			<div class="summoner-level">
+				<p>{{lvl}}</p>
+			</div>
+		</section>
+
+		<section class="ranked-solo">
+			<div class='ranked-solo-logo'>
+				<img src="/static/images/Rank_Icons/Emblem_{{solo_rank}}.png">
+			</div>
+
+			<div class='ranked-solo-details'> 
+				<p class='solo-type'>Ranked Solo</p>
+				<p class='solo-rank-and-tier'>{{solo_rank}} {{solo_division}}</p>
+
+				{% if solo_rank != 'UNRANKED' %}
+				<p class='solo-lp'>{{solo_lp}} LP</p>
+				<p class='solo-wins-losses'>{{solo_wins}}W, {{solo_losses}}L</p>
+				<p class='solo-win-ratio'>Win Ratio: {{solo_wr}}%</p>
+				{% endif %}
+			</div>
+		</section>
+
+		<section class="ranked-flex">
+			<div class='ranked-flex-logo'>
+				<img src="/static/images/Rank_Icons/Emblem_{{flex_rank}}.png">
+			</div>
+
+			<div class='ranked-flex-details'> 
+				<p class='flex-type'>Ranked Flex</p>
+				<p class='flex-rank-and-tier'>{{flex_rank}} {{flex_division}}</p>
+
+				{% if flex_rank != 'UNRANKED' %}
+				<p class='flex-lp'>{{flex_lp}} LP</p>
+				<p class='flex-wins-losses'>{{flex_wins}}W, {{flex_losses}}L</p>
+				<p class='flex-win-ratio'>Win Ratio: {{flex_wr}}%</p>
+				{% endif %}
+
+			</div>
+		</section>
+
+		<section class='ranked-stats'>
+
+			<div id='ranked_stats'>
+				
+				<div class='stats-header'>	
+
+					<p>Queue Statistics (Past {{matches|length}} Games)</p>
+
+				</div>
+
+				{% for x in champs_played %}
+
+
+				<div class='ranked-stats-row'>
+					<div class='champ-img'>	
+						<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{x}}_0.jpg">
+						<span class='tooltiptext'>{{x}}</span>
+					</div>
+
+					<div class='champ-name'>
+						<p>{{x}}</p>
+					</div>
+
+					<div class='champ-cs-stats'>
+						<p class='avg-champ-cs'> CS: {{'{:.2f}'.format(avg_cs[x]/games_played[x])}}</p>
+						<p class='champ-csm'>({{'{:.2f}'.format(((avg_cs[x])/(in_game_time[x]/60)))}}/min)</p>
+					</div>
+
+
+					<div class='champ-kda-stats'>
+
+						{% if kda[x][1] == 0 %}
+
+						<p class='kda-orange'>Perfect KDA</p>
+
+						{% elif ((kda[x][0] + kda[x][2])/kda[x][1]) >= 5.00 %}
+
+						<p class='kda-orange'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+
+						{% elif ((kda[x][0] + kda[x][2])/kda[x][1]) >= 3.00 %}
+
+						<p class='kda-green'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+
+						{% else %}
+						<p class='kda-plain'>{{'{:.2f}'.format((kda[x][0] + kda[x][2])/kda[x][1])}}:1 KDA </p>
+						{% endif %}
+
+						<p class='avg-kda'>{{'{:.1f}'.format(kda[x][0]/games_played[x])}}/{{'{:.1f}'.format(kda[x][1] / games_played[x])}}/{{'{:.1f}'.format(kda[x][2] / games_played[x])}}</p>
+					</div>
+
+					<div class='champ-wr-stats'>
+
+						{% if wr[x] >= 60 %}
+						<p class='wr-red'>{{wr[x]}}%</p>
+						{% else %}
+						<p class='wr-plain'>{{wr[x]}}%</p>
+						{% endif %}
+
+						<p class='games-played'>{{games_played[x]}} Played</p>
+					</div>
+
+				</div>
+
+
+				{% endfor %}
+			</div>
+		</section>
+
+		<section class='recently-played-with'>
+
+			<div class='container'>
+
+				<table>
+
+					<tr>
+						<p class='title'>Recently Played With (Past 10 Games)</p>
+					</tr>
+					<tr class='header'>
+
+						<th>Summoner</th>
+						<th>Played</th>
+						<th>Win</th>
+						<th>Lose</th>
+						<th>Win Ratio</th>
+
+					</tr>
+
+					{% for k,v in played_with.items() %}
+					<tr class='body'>
+						<td class='champ-name'>
+							<a class='player-link' href="/profile/{{server}}/{{k}}">
+								<p style="color: grey">{{k}}</p>
+							</a>
+						</td>
+
+						<td class='data'><p>{{v.get('count')}}</p></td>
+
+						<td class='data'><p>{{v.get('wins')}}</p></td>
+
+						<td class='data'><p>{{v.get('count') - v.get('wins')}}</p></td>
+
+						<td class='data'><p>{{"{:.2f}".format((v.get('wins')/v.get('count'))*100)}}%</p></td>
+					</tr>
+
+					{% endfor %}
+				</table>
+
+			</div>
+
+		</section>
+
+		<section class='recent-games' id='recent_games'>
+
+			<div class='queue-select'>
+
+				<div class='queue'>
+					<button id='All' class='radio-btn' type='button'>All</button>
+				</div>
+
+				<div class='queue'>
+					<button id='Normal' class='radio-btn' type='button'>Normal</button>
+				</div>
+
+				<div class='queue'>
+					<button id='Ranked' class='radio-btn' type='button'>Ranked</button>
+				</div>
+
+				<div class='queue'>
+					<button id='ARAM' class='radio-btn' type='button'>ARAM</button>
+				</div>
+
+				<div class='queue'>
+					<button id='Clash' class='radio-btn' type='button'>Clash</button>
+				</div>
+
+				<script type="text/javascript">
+					var stats = "{{recent_game_stats}}";
+					$(document).ready(function(){
+
+						$.each($('.radio-btn'), function(key, value){
+							$(this).click(function(e){
+								$('.radio-btn-selected')
+								.removeClass('radio-btn-selected')
+								.addClass('radio-btn');
+
+								$(this)
+								.removeClass('radio-btn')
+								.addClass('radio-btn-selected');
+
+							// Loading
+							document.getElementById('match_history').style.display = "none";
+							document.getElementById('load-screen').style.display = "block";
+							$.ajax({
+								url: "/update_queue",
+								type: "POST",
+								data: {'name': "{{name}}", 'matches': "{{matches}}", 'server': "{{server}}", 'queue':$(this).attr('id'),'recent_game_stats':"{{recent_game_stats}}"},
+								dataType: "json",
+								success: function(data){
+									$(match_history).replaceWith(data)
+									document.getElementById('match_history').style.display = "block";
+									document.getElementById('load-screen').style.display = "none";
+
+									$.ajax({
+										url: "/update_stats",
+										type: "POST",
+										data: {'recent_game_stats':stats},
+										dataType: "json",
+										success: function(data){
+											$(ranked_stats).replaceWith(data);
+										}
+									});
+
+								}
+							});
+						});
+						});
+					});
+				</script>
+
+				<script type="text/javascript">
+					$(document).ready(function(){
+						document.getElementById('All').classList.remove('radio-btn');
+						document.getElementById('All').classList.add('radio-btn-selected');
+					})
+
+				</script>
+
+			</div>
+
+			<div id='load-screen' class='load-screen'></div>
+
+			<div id='match_history'>
+
+				<script type="text/javascript">
+					var stats = "{{recent_game_stats}}";
+
+					function extendMatchHistory(){
+						var q = document.getElementsByClassName('radio-btn-selected')[0].id;
+
+						$(document).on('click', '#load-btn', function(){
+							$('#load-btn').addClass('button-loading');
+						});
+						$.ajax({
+							url: "/update_match_history",
+							type: "POST",
+							data: {'name': "{{name}}", 'matches': '{{matches}}', 'server': "{{server}}", 'queue': q,'recent_game_stats':"{{recent_game_stats}}"}, 
+							dataType: "json",
+							success: function(data){
+								$(match_history).replaceWith(data);
+								document.getElementById("load-btn").classList.remove('button-loading');
+
+								$.ajax({
+									url: "/update_stats",
+									type: "POST",
+									data: {'recent_game_stats':stats},
+									dataType: "json",
+									success: function(data){
+										$(ranked_stats).replaceWith(data);
+									}
+								});
+							}
+						});
+
+
+					}
+
+					$(document).ready(function(){
+						$.each($('.expand'), function(index){
+							var details = $(this).children("div.expanded-details");
+							$.each($(this).children("button"), function(){
+
+								$(this).click(function(){
+
+									if(details.css("display") != "none"){
+										details.css("display", "none");
+									}
+									else{
+										$('.expanded-details').css("display", "none");
+										details.css("display", "inline-block");
+									}
+								});
+							});
+						});
+					});
+				</script>
+
+				{% if matches|length == 0 %}
+				<div class='no-matches'>
+					<p>No matches were found.</p>
+				</div>
+				{% endif %}
+				
+
+				{% for match in matches %}
+
+				{% if match[3]['result'] == 'Victory' %}
+				<div class='match-row-victory'>
+
+
+					<div class='prelim_details'>
+						<p class='type'>{{match[2]}}</p>
+						<p class='when'>{{match[1]}}</p>
+
+						<p class='result' style='color: #00008b; font-weight: bold;'>{{match[3]['result']}}</p>
+
+						<p class='length'>{{match[0] // 60}}m {{match[0] % 60}}s</p>
+					</div>
+
+					<div class='champ-icon-name'>
+						<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{match[3]['player_champs']}}_0.jpg">
+						<p class='name'>{{match[3]['player_champs']}}</p>
+					</div>
+
+					<div class='summ-spells'>
+						<div class='summ-img'>
+
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][0]['image']['full']}}">
+
+							<span class='tooltiptext-summoner'>
+								<p class='spell-name'>{{match[3]['player_summoner_details'][0]['name']}}</p>
+								<p class='spell-description'>{{match[3]['player_summoner_details'][0]['description']|safe}}</p>
+							</span>
+
+						</div>
+
+						<div class='summ-img'>
+
+
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][1]['image']['full']}}">
+
+							<span class='tooltiptext-summoner'>
+								<p class='spell-name'>{{match[3]['player_summoner_details'][1]['name']}}</p>
+								<p class='spell-description'>{{match[3]['player_summoner_details'][1]['description']|safe}}</p>
+							</span>
+
+						</div>
+
+					</div>
+
+					<div class='runes'>
+
+						<div class='runes-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['primary']['icon']}}">
+
+							<span class='tooltiptext'>
+								<p class='rune-name'>{{match[3]['player_runes']['primary']['name']}}</p>
+								<p class='rune-details'>{{match[3]['player_runes']['primary']['longDesc']|safe}}</p>
+							</span>
+
+						</div>
+
+						<div class='runes-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['secondary']['icon']}}">
+							<span class='tooltiptext'>
+								<p class='rune-name'>{{match[3]['player_runes']['secondary']['name']}}</p>
+								<p class='rune-details'>{{match[3]['player_runes']['secondary']['longDesc']|safe}}</p>
+							</span>
+						</div>
+
+					</div>
+
+					<div class='game-score'>
+						<p class='kda'>{{match[3]['player_kdas'][0]}}&nbsp/&nbsp{{match[3]['player_kdas'][1]}}&nbsp/&nbsp{{match[3]['player_kdas'][2]}}</p>
+
+						{% if match[3]['player_kdas'][1] == 0 %}
+						<p class='kda-ratio'>Perfect KDA</p>
+						{% else %}
+						<p class='kda-ratio'>{{match[3]['player_kdas'][3]}}:1 KDA</p>
+						{% endif %}
+
+					</div>
+
+					<div class='level-cs-kp'>
+						<p class='lvl'>Level: {{match[3]['player_levels']}}</p>
+						<p class='cs'>{{match[3]['player_cs'][0]}} ({{match[3]['player_cs'][1]}}) CS</p>
+						<p class='kp'>{{match[3]['player_kp']}}% KP</p>
+					</div>
+
+					<div class='items'>
+
+						{% for i in range(6) %}
+
+						{% if match[3]['player_items'][i] != 0 %}
+						<div class='item-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][i]}}.png">
+							
+							<span class='tooltiptext-item'>
+								<p class='item-name'>{{match[3]['player_item_details'][i]['name']}}</p>
+								<p class='item-details'>{{match[3]['player_item_details'][i]['description']|safe}}</p>
+							</span>
+						</div>
+						{% else %}
+						<div>
+							<img src="/static/images/square-64.png" alt='' class='blank'>
+						</div>
+						{% endif %}
+						{% endfor %}
+
+						<p class='wards'>Control Wards: {{match[3]['player_wards'][0]}}</p>
+					</div>
+
+					<div class='ward-slot'>
+						{% if match[3]['player_items'][6] != 0 %}
+						<div class='item-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][6]}}.png">
+							
+							<span class='tooltiptext-item'>
+								<p class='item-name'>{{match[3]['player_item_details'][6]['name']}}</p>
+								<p class='item-details'>{{match[3]['player_item_details'][6]['description']|safe}}</p>
+							</span>
+						</div>
+						{% else %}
+						<img src="/static/images/square-64.png" alt='' class='blank'>
+						{% endif %}
+					</div>
+
+					<div class='blue-team'>
+
+						{% for c in match[-1]['teams'][0].values() %}
+
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
+							<span class='tooltiptext'>{{c}}</span>
+						</div>
+
+						{% endfor %}
+
+					</div>
+
+					<div class='blue-team-names'>
+
+						{% for n in match[-1]['teams'][0].keys() %}					
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p>{{n}}</p></a>
+						{% endfor %}
+
+					</div>
+
+					<div class='red-team'>
+
+						{% for c in match[-1]['teams'][1].values() %}
+
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
+							<span class='tooltiptext'>{{c}}</span>
+						</div>
+
+						{% endfor %}
+
+					</div>
+
+					<div class='red-team-names'>
+
+						{% for n in match[-1]['teams'][1].keys() %}					
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p>{{n}}</p></a>
+						{% endfor %}
+
+					</div>
+
+					<div class='expand'>
+						<button class='drop-btn'>V
+						</button>
+
+						<div class='expanded-details'>
+
+							<div class='table' >
+								<table class='red-team'>
+									<tr class='header'>
+
+										{% if match[-2]['win'] == 'Victory' %}
+										<th class='team-result'>
+											<p class='victory'>{{match[-2]['win']}}</p> 
+											<p class='red'>(Red Team)</p>
+										</th>
+										{% else %}
+										<th class='team-result'>
+											<p class='defeat'>{{match[-2]['win']}}</p> 
+											<p class='red'>(Red Team)</p>
+										</th>
+										{% endif %}											
+										<th class='team-ranks'>Tier</th>
+										<th class='team-kdas'>KDA</th>
+										<th class='team-damage'>Damage</th>
+										<th class='team-wards'>Wards</th>
+										<th class='team-cs'>CS</th>
+										<th class='team-items'>Items</th>
+									</tr>
+
+									{% for k,v in match[-1]['teams'][0].items() %}
+
+									<tr>
+										<td class='team1-names'>
+
+											<div class='champ-img'>
+												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
+												<span class='tooltiptext'>{{v}}</span>
+
+												<div class='player-level'>	
+													<p>{{match[-1]['player_levels'][k]}}</p>
+												</div>
+											</div>
+
+											<div class='summ-spells'>
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+											</div>
+
+											<div class='runes'>
+
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
+
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+												
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
+
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+												
+
+												
+											</div>
+
+											{% if k == name %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p style='color: red'>{{k}}</p>
+											</a>
+											{% else %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p>{{k}}</p>
+											</a>
+											{% endif %}
+										</td>
+
+
+
+
+										<td>temp</td>
+										<td>
+
+											<div class='kda-ratio'>
+												<p>{{match[-1]['player_kdas'][k][3]}}:1</p>
+												<p>{{match[-1]['player_kdas'][k][0]}} /
+													{{match[-1]['player_kdas'][k][1]}} /
+												{{match[-1]['player_kdas'][k][2]}}</p>
+
+											</div>
+										</td>
+
+										<td>
+											<p>{{match[-1]['player_totaldamage'][k]}}</p>
+										</td>
+
+										<td>
+											<div class='ward-stats'>
+												<p>{{match[-1]['player_wards'][k][0]}}</p>
+												<p>{{match[-1]['player_wards'][k][1]}}/{{match[-1]['player_wards'][k][2]}}</p>
+											</div>
+										</td>
+
+										<td>
+											<div class='cs-stats'>
+												<p>{{match[-1]['player_cs'][k][0]}}</p>
+												<p>{{match[-1]['player_cs'][k][1]}}</p>
+											</div>
+										</td>
+
+										<td>
+
+											<div class='items'>
+												{% for i in range(7)%}
+												{% if match[-1]['player_items'][k][i] != 0 %}
+
+												<div class ='item-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
+													<span class='tooltiptext-item'>
+														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
+														
+														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
+
+													</span>
+												</div>
+												{% else %}
+												<div>
+													<img src="/static/images/square-64.png" alt='' class='blank'>
+												</div>
+												{% endif %}
+												{% endfor %}
+											</div>
+										</td>
+									</tr>
+
+									{% endfor %}
+
+								</table>
+
+								<div class='objective-stats'>
+
+									<div class='barons' style='background-color: rgba(255,204,203,0.3);'>
+										<img src="/static/images/red_baron.png">
+										<p style=''>{{match[-2]['barons']}}</p>
+									</div>
+
+									<div class='dragons' style='background-color: rgba(255,204,203,0.3);'>
+										<img src="/static/images/red_dragon.png">
+										<p>{{match[-2]['dragons']}}</p>
+									</div>
+
+									<div class='towers' style='background-color: rgba(255,204,203,0.3);'>
+										<img src="/static/images/red_tower.png">
+										<p>{{match[-2]['towers']}}</p>
+									</div>
+
+									<div class='kills-gold-red' style='background-color: rgba(255,204,203,0.3);'>
+
+										<div class='kills'>
+											<p class='label'>Total Kills: </p>
+											<p class='num'>{{match[-2]['kills']}}</p>
+										</div>
+
+										<div class='gold'>
+											<p class='label'>Total Gold: </p>
+											<p class='num'>{{match[-2]['gold']}}</p>
+										</div>
+
+									</div>
+
+									<div class='kills-gold-blue' style='background-color: rgb(173, 216, 230, 0.3);'>
+										<div class='kills'>
+											<p class='label'>Total Kills: </p>
+											<p class='num'>{{match[-3]['kills']}}</p>
+										</div>
+
+										<div class='gold'>
+											<p class='label'>Total Gold: </p>
+											<p class='num'>{{match[-3]['gold']}}</p>
+										</div>
+
+									</div>
+
+									<div class='barons' style='background-color: rgb(173, 216, 230, 0.3);'>
+										<img src="/static/images/blue_baron.png">
+										<p>{{match[-3]['barons']}}</p>
+									</div>
+
+									<div class='dragons' style='background-color: rgb(173, 216, 230, 0.3);'>
+										<img src="/static/images/blue_dragon.png">
+										<p>{{match[-3]['dragons']}}</p>
+									</div>
+
+									<div class='towers' style='background-color: rgb(173, 216, 230, 0.3);'>
+										<img src="/static/images/blue_tower.png">
+										<p>{{match[-3]['towers']}}</p>
+									</div>
+								</div>
+
+								<table class='blue-team'>
+									<tr class='header'>
+										{% if match[-3]['win'] == 'Victory' %}
+										<th class='team-result'>
+											<p class='victory'>{{match[-3]['win']}}</p> 
+											<p class='blue'>(Blue Team)</p>
+										</th>
+										{% else %}
+										<th class='team-result'>
+											<p class='defeat'>{{match[-3]['win']}}</p> 
+											<p class='blue'>(Blue Team)</p>
+										</th>
+										{% endif %}	
+										<th class='team-ranks'>Tier</th>
+										<th class='team-kdas'>KDA</th>
+										<th class='team-damage'>Damage</th>
+										<th class='team-wards'>Wards</th>
+										<th class='team-cs'>CS</th>
+										<th class='team-items'>Items</th>
+									</tr>
+
+									{% for k,v in match[-1]['teams'][1].items() %}
+
+									<tr>
+										<td class='team1-names'>
+
+											<div class='champ-img'>
+												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
+												<span class='tooltiptext'>{{v}}</span>
+
+												<div class='player-level'>	
+													<p>{{match[-1]['player_levels'][k]}}</p>
+												</div>
+											</div>
+
+											<div class='summ-spells'>
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+											</div>
+
+
+											<div class='runes'>
+												
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+											</div>
+
+
+											{% if k == name %}
+											<a class='player-link'href="/profile/{{server}}/{{k}}">
+												<p style='color: blue'>{{k}}</p>
+											</a>
+											{% else %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p>{{k}}</p>
+											</a>
+											{% endif %}
+										</td>
+
+
+
+
+										<td>temp</td>
+										<td>
+
+											<div class='kda-ratio'>
+												<p>{{match[-1]['player_kdas'][k][3]}}:1</p>
+												<p>{{match[-1]['player_kdas'][k][0]}} /
+													{{match[-1]['player_kdas'][k][1]}} /
+												{{match[-1]['player_kdas'][k][2]}}</p>
+
+											</div>
+										</td>
+
+										<td>
+											<p>{{match[-1]['player_totaldamage'][k]}}</p>
+										</td>
+
+										<td>
+											<div class='ward-stats'>
+												<p>{{match[-1]['player_wards'][k][0]}}</p>
+												<p>{{match[-1]['player_wards'][k][1]}}/{{match[-1]['player_wards'][k][2]}}</p>
+											</div>
+										</td>
+
+										<td>
+											<div class='cs-stats'>
+												<p>{{match[-1]['player_cs'][k][0]}}</p>
+												<p>{{match[-1]['player_cs'][k][1]}}</p>
+											</div>
+										</td>
+
+										<td>
+
+											<div class='items'>
+												{% for i in range(7) %}
+												{% if match[-1]['player_items'][k][i] != 0 %}
+
+												<div class ='item-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
+													<span class='tooltiptext-item'>
+														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
+														
+														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
+
+													</span>
+												</div>
+
+												{% else %}
+												<div>
+													<img src="/static/images/square-64.png" alt='' class='blank'>
+												</div>
+												{% endif %}
+												{% endfor %}
+											</div>
+										</td>
+									</tr>
+
+									{% endfor %}
+
+								</table>
+
+
+
+							</div>
+
+						</div>
+					</div>
+
+				</div>
+
+				{% else %}
+
+				<div class='match-row-defeat'>
+
+
+					<div class='prelim_details'>
+						<p class='type'>{{match[2]}}</p>
+						<p class='when'>{{match[1]}}</p>
+						<p class='result' style='color: #8b0000; font-weight: bold;'>{{match[3]['result']}}</p>
+						<p class='length'>{{match[0] // 60}}m {{match[0] % 60}}s</p>
+
+					</div>
+
+					<div class='champ-icon-name'>
+						<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{match[3]['player_champs']}}_0.jpg">
+						<p class='name'>{{match[3]['player_champs']}}</p>
+					</div>
+
+
+					<div class='summ-spells'>
+						<div class='summ-img'>
+
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][0]['image']['full']}}">
+
+							<span class='tooltiptext-summoner'>
+								<p class='spell-name'>{{match[3]['player_summoner_details'][0]['name']}}</p>
+								<p class='spell-description'>{{match[3]['player_summoner_details'][0]['description']|safe}}</p>
+							</span>
+
+						</div>
+
+						<div class='summ-img'>
+
+
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][1]['image']['full']}}">
+
+							<span class='tooltiptext-summoner'>
+								<p class='spell-name'>{{match[3]['player_summoner_details'][1]['name']}}</p>
+								<p class='spell-description'>{{match[3]['player_summoner_details'][1]['description']|safe}}</p>
+							</span>
+
+						</div>
+
+					</div>
+
+					<div class='runes'>
+
+						<div class='runes-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['primary']['icon']}}">
+
+							<span class='tooltiptext'>
+								<p class='rune-name'>{{match[3]['player_runes']['primary']['name']}}</p>
+								<p class='rune-details'>{{match[3]['player_runes']['primary']['longDesc']|safe}}</p>
+							</span>
+
+						</div>
+
+						<div class='runes-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['secondary']['icon']}}">
+
+							<span class='tooltiptext'>
+								<p class='rune-name'>{{match[3]['player_runes']['secondary']['name']}}</p>
+								<p class='rune-details'>{{match[3]['player_runes']['secondary']['longDesc']|safe}}</p>
+							</span>
+
+						</div>
+
+					</div>
+
+					<div class='game-score'>
+						<p class='kda'>{{match[3]['player_kdas'][0]}}&nbsp/&nbsp{{match[3]['player_kdas'][1]}}&nbsp/&nbsp{{match[3]['player_kdas'][2]}}</p>
+
+						{% if match[3]['player_kdas'][1] == 0 %}
+						<p class='kda-ratio'>Perfect KDA</p>
+						{% else %}
+						<p class='kda-ratio'>{{match[3]['player_kdas'][3]}}:1 KDA</p>
+						{% endif %}
+
+					</div>
+
+					<div class='level-cs-kp'>
+						<p class='lvl'>Level: {{match[3]['player_levels']}}</p>
+						<p class='cs'>{{match[3]['player_cs'][0]}} ({{match[3]['player_cs'][1]}}) CS</p>
+						<p class='kp'>{{match[3]['player_kp']}}% KP</p>
+					</div>
+
+					<div class='items'>
+
+						{% for i in range(6)%}
+
+						{% if match[3]['player_items'][i] != 0 %}
+						<div class='item-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][i]}}.png">
+							
+							<span class='tooltiptext-item'>
+								<p class='item-name'>{{match[3]['player_item_details'][i]['name']}}</p>
+								<p class='item-details'>{{match[3]['player_item_details'][i]['description']|safe}}</p>
+							</span>
+						</div>
+
+
+
+						{% else %}
+
+						<img src="/static/images/square-64.png" alt='' class='blank'>
+
+						{% endif %}
+						{% endfor %}
+
+						<p class='wards'>Control Wards: {{match[3]['player_wards'][0]}}</p>
+					</div>
+
+					<div class='ward-slot'>
+						{% if match[3]['player_items'][6] != 0 %}
+						<div class='item-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][6]}}.png">
+							
+							<span class='tooltiptext-item'>
+								<p class='item-name'>{{match[3]['player_item_details'][6]['name']}}</p>
+								<p class='item-details'>{{match[3]['player_item_details'][6]['description']|safe}}</p>
+							</span>
+						</div>
+						{% else %}
+						<div>
+							<img src="/static/images/square-64.png" alt='' class='blank'>
+						</div>
+						{% endif %}
+					</div>
+
+					<div class='blue-team'>
+
+						{% for c in match[-1]['teams'][0].values() %}
+
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
+							<span class='tooltiptext'>{{c}}</span>
+						</div>
+
+						{% endfor %}
+
+					</div>
+
+					<div class='blue-team-names'>
+
+						{% for n in match[-1]['teams'][0].keys() %}					
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p>{{n}}</p></a>
+						{% endfor %}
+
+					</div>
+
+					<div class='red-team'>
+
+						{% for c in match[-1]['teams'][1].values() %}
+
+						<div class='champ-img'>
+							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
+							<span class='tooltiptext'>{{c}}</span>
+						</div>
+						{% endfor %}
+
+					</div>
+
+					<div class='red-team-names'>
+
+						{% for n in match[-1]['teams'][1].keys() %}					
+						<a class='player-link' href="/profile/{{server}}/{{n}}"><p>{{n}}</p></a>
+						{% endfor %}
+
+					</div>
+
+					<div class='expand'>
+						<button class='drop-btn'>V
+						</button>
+
+						<div class='expanded-details'>
+
+							<div class='table' >
+								<table class='red-team'>
+									<tr class='header'>
+										{% if match[-2]['win'] == 'Victory' %}
+										<th class='team-result'>
+											<p class='victory'>{{match[-2]['win']}}</p> 
+											<p class='red'>(Red Team)</p>
+										</th>
+										{% else %}
+										<th class='team-result'>
+											<p class='defeat'>{{match[-2]['win']}}</p> 
+											<p class='red'>(Red Team)</p>
+										</th>
+										{% endif %}	
+										<th class='team-ranks'>Tier</th>
+										<th class='team-kdas'>KDA</th>
+										<th class='team-damage'>Damage</th>
+										<th class='team-wards'>Wards</th>
+										<th class='team-cs'>CS</th>
+										<th class='team-items'>Items</th>
+									</tr>
+
+									{% for k,v in match[-1]['teams'][0].items() %}
+
+									<tr>
+										<td class='team1-names'>
+
+											<div class='champ-img'>
+												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
+												<span class='tooltiptext'>{{v}}</span>
+
+												<div class='player-level'>	
+													<p>{{match[-1]['player_levels'][k]}}</p>
+												</div>
+											</div>
+
+											<div class='summ-spells'>
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+											</div>
+
+											<div class='runes'>
+												
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+											</div>
+
+											{% if k == name %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p style='color: red'>{{k}}</p>
+											</a>
+											{% else %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p>{{k}}</p>
+											</a>
+											{% endif %}
+										</td>
+
+
+
+
+										<td>temp</td>
+										<td>
+
+											<div class='kda-ratio'>
+												<p>{{match[-1]['player_kdas'][k][3]}}:1</p>
+												<p>{{match[-1]['player_kdas'][k][0]}} /
+													{{match[-1]['player_kdas'][k][1]}} /
+												{{match[-1]['player_kdas'][k][2]}}</p>
+
+											</div>
+										</td>
+
+										<td>
+											<p>{{match[-1]['player_totaldamage'][k]}}</p>
+										</td>
+
+										<td>
+											<div class='ward-stats'>
+												<p>{{match[-1]['player_wards'][k][0]}}</p>
+												<p>{{match[-1]['player_wards'][k][1]}}/{{match[-1]['player_wards'][k][2]}}</p>
+											</div>
+										</td>
+
+										<td>
+											<div class='cs-stats'>
+												<p>{{match[-1]['player_cs'][k][0]}}</p>
+												<p>{{match[-1]['player_cs'][k][1]}}</p>
+											</div>
+										</td>
+
+										<td>
+
+											<div class='items'>
+												{% for i in range(7) %}
+												{% if match[-1]['player_items'][k][i] != 0 %}
+
+												<div class ='item-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
+													<span class='tooltiptext-item'>
+														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
+														
+														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
+
+													</span>
+												</div>
+
+
+												{% else %}
+
+												<img src="/static/images/square-64.png" alt='' class='blank'>
+
+												{% endif %}
+												{% endfor %}
+											</div>
+										</td>
+									</tr>
+
+									{% endfor %}
+
+								</table>
+
+								<div class='objective-stats'>
+
+									<div class='barons'>
+										<img src="/static/images/red_baron.png">
+										<p>{{match[-2]['barons']}}</p>
+									</div>
+
+									<div class='dragons'>
+										<img src="/static/images/red_dragon.png">
+										<p>{{match[-2]['dragons']}}</p>
+									</div>
+
+									<div class='towers'>
+										<img src="/static/images/red_tower.png">
+										<p>{{match[-2]['towers']}}</p>
+									</div>
+
+									<div class='kills-gold-red'>
+
+										<div class='kills'>
+											<p class='label'>Total Kills: </p>
+											<p class='num'>{{match[-2]['kills']}}</p>
+										</div>
+
+										<div class='gold'>
+											<p class='label'>Total Gold: </p>
+											<p class='num'>{{match[-2]['gold']}}</p>
+										</div>
+
+									</div>
+
+									<div class='kills-gold-blue'>
+										<div class='kills'>
+											<p class='label'>Total Kills: </p>
+											<p class='num'>{{match[-3]['kills']}}</p>
+										</div>
+
+										<div class='gold'>
+											<p class='label'>Total Gold: </p>
+											<p class='num'>{{match[-3]['gold']}}</p>
+										</div>
+
+									</div>
+
+									<div class='barons'>
+										<img src="/static/images/blue_baron.png">
+										<p>{{match[-3]['barons']}}</p>
+									</div>
+
+									<div class='dragons'>
+										<img src="/static/images/blue_dragon.png">
+										<p>{{match[-3]['dragons']}}</p>
+									</div>
+
+									<div class='towers'>
+										<img src="/static/images/blue_tower.png">
+										<p>{{match[-3]['towers']}}</p>
+									</div>
+								</div>
+
+								<table class='blue-team'>
+									<tr class='header'>
+										{% if match[-3]['win'] == 'Victory' %}
+										<th class='team-result'>
+											<p class='victory'>{{match[-3]['win']}}</p> 
+											<p class='blue'>(Blue Team)</p>
+										</th>
+										{% else %}
+										<th class='team-result'>
+											<p class='defeat'>{{match[-3]['win']}}</p> 
+											<p class='blue'>(Blue Team)</p>
+										</th>
+										{% endif %}	
+										<th class='team-ranks'>Tier</th>
+										<th class='team-kdas'>KDA</th>
+										<th class='team-damage'>Damage</th>
+										<th class='team-wards'>Wards</th>
+										<th class='team-cs'>CS</th>
+										<th class='team-items'>Items</th>
+									</tr>
+
+									{% for k,v in match[-1]['teams'][1].items() %}
+
+									<tr>
+										<td class='team1-names'>
+
+											<div class='champ-img'>
+												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
+												<span class='tooltiptext'>{{v}}</span>
+
+												<div class='player-level'>	
+													<p>{{match[-1]['player_levels'][k]}}</p>
+												</div>
+											</div>
+
+											<div class='summ-spells'>
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+												<div class='summ-img'>
+
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
+
+													<span class='tooltiptext-summoner'>
+														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
+														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
+													</span>
+
+												</div>
+												
+											</div>
+
+											<div class='runes'>
+												
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+												<div class='runes-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
+													<span class='tooltiptext'>
+														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
+														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
+													</span>
+												</div>
+
+											</div>
+
+											{% if k == name %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p style='color: blue'>{{k}}</p>
+											</a>
+											{% else %}
+											<a class='player-link' href="/profile/{{server}}/{{k}}">
+												<p>{{k}}</p>
+											</a>
+											{% endif %}
+										</td>
+
+
+
+
+										<td>temp</td>
+										<td>
+
+											<div class='kda-ratio'>
+												<p>{{match[-1]['player_kdas'][k][3]}}:1</p>
+												<p>{{match[-1]['player_kdas'][k][0]}} /
+													{{match[-1]['player_kdas'][k][1]}} /
+												{{match[-1]['player_kdas'][k][2]}}</p>
+
+											</div>
+										</td>
+
+										<td>
+											<p>{{match[-1]['player_totaldamage'][k]}}</p>
+										</td>
+
+										<td>
+											<div class='ward-stats'>
+												<p>{{match[-1]['player_wards'][k][0]}}</p>
+												<p>{{match[-1]['player_wards'][k][1]}}/{{match[-1]['player_wards'][k][2]}}</p>
+											</div>
+										</td>
+
+										<td>
+											<div class='cs-stats'>
+												<p>{{match[-1]['player_cs'][k][0]}}</p>
+												<p>{{match[-1]['player_cs'][k][1]}}</p>
+											</div>
+										</td>
+
+										<td>
+
+											<div class='items'>
+												{% for i in range(7) %}
+												{% if match[-1]['player_items'][k][i] != 0 %}
+
+												<div class ='item-img'>
+													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
+													<span class='tooltiptext-item'>
+														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
+														
+														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
+
+													</span>
+												</div>
+
+
+												{% else %}
+
+												<img src="/static/images/square-64.png" alt='' class='blank'>
+
+												{% endif %}
+												{% endfor %}
+											</div>
+										</td>
+									</tr>
+
+									{% endfor %}
+
+								</table>
+
+
+
+							</div>
+
+						</div>
+					</div>
+				</div>
+
+				{% endif %}
+				{% endfor %}
+
+			</div>
+
+			<button id='load-btn' class='load-more-btn' onclick="extendMatchHistory()">Load More</button>
+
+
+		</section>
+	</div>
+	{% endblock %}
+</body>
+
