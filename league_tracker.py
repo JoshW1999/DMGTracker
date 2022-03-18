@@ -538,6 +538,3 @@ class Account:
 			
 
 		return
-
-acc = Account('euw1', 'Drututt')
-acc.get_live_details()
