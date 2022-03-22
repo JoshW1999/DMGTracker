@@ -1216,71 +1216,6 @@ th{
 	margin: 0;
 }
 
-.tooltiptext{
-	visibility: hidden; 
-	width: auto; 
-
-	font-size: 12px;
-	background-color: rgba(105, 105, 105, 0.8);
-	color: white;
-
-	text-align: left; 
-
-	border: 1px solid silver;
-	border-radius: 15px;
-
-	padding: 5px 5px;
-
-	position: absolute; 
-	z-index: 3; 	
-}
-
-.tooltiptext-item{
-	visibility: hidden; 
-
-	max-width: 240px;
-	width: fit-content;
-
-
-	font-size: 12px;
-
-	background-color: rgba(105, 105, 105, 0.8);
-	color: white;
-	
-	border: 1px solid silver;
-	border-radius: 15px;
-
-	text-align: left;
-
-	padding: 5px 5px;
-
-	position: absolute;
-	z-index: 3;
-}
-
-.tooltiptext-summoner{
-	visibility: hidden; 
-
-	max-width: 190px;
-	width: fit-content;
-
-
-	font-size: 12px;
-
-	background-color: rgba(105, 105, 105, 0.8);
-	color: white;
-	
-	border: 1px solid silver;
-	border-radius: 15px;
-
-	text-align: left;
-
-	padding: 5px 5px;
-
-	position: absolute;
-	z-index: 3;
-}
-
 .recent-games .item-name{
 	color: #7fffd4;
 	font-size: 16px;
@@ -1307,39 +1242,6 @@ th{
 .recent-games .rune-details{
 	font-size: 12px;
 	text-align: left;
-}
-
-
-.champ-img:hover .tooltiptext{
-	visibility: visible;
-}
-
-.summ-img:hover .tooltiptext-summoner{
-	visibility: visible; 
-}
-
-.runes-img:hover .tooltiptext{ 
-	visibility: visible; 
-}
-
-.item-img:hover .tooltiptext-item{
-	visibility: visible;
-}
-
-.item-img .tooltiptext-item:hover{
-	visibility: hidden;
-}
-
-.summ-img .tooltiptext-summoner:hover{
-	visibility: hidden;
-}
-
-.runes-img .tooltiptext:hover{
-	visibility: hidden; 
-}
-
-.champ-img .tooltiptext:hover{
-	visibility: hidden;
 }
 
 .no-matches{
@@ -1377,24 +1279,6 @@ th{
 	text-align: center;
 }
 
-.tooltiptext-hidden{
-	visibility: hidden; 
-	width: auto; 
-
-	font-size: 12px;
-	background-color: rgba(105, 105, 105, 0.8);
-	color: white;
-
-	text-align: left; 
-
-	border: 1px solid silver;
-	border-radius: 15px;
-
-	padding: 5px 5px;
-
-	position: absolute; 
-	z-index: 3; 
-}
 
 .tooltiptext-visible{
 	visibility: visible; 
@@ -1415,3 +1299,143 @@ th{
 	z-index: 3; 	
 }
 
+
+
+
+.tooltiptext-hidden{
+	visibility: hidden; 
+
+
+	max-width: 240px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.tooltiptext-item-hidden{
+	visibility: hidden; 
+	max-width: 240px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+	
+}
+
+.tooltiptext-summoner-hidden{
+	visibility: hidden; 
+	max-width: 190px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.tooltiptext-item-visible{
+	visibility: visible; 
+
+	max-width: 240px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.tooltiptext-item-visible{
+	visibility: visible; 
+
+	max-width: 240px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}
+
+.tooltiptext-summoner-visible{
+	visibility: visible; 
+
+	max-width: 190px;
+	width: fit-content;
+
+
+	font-size: 12px;
+
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+	
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	text-align: left;
+
+	padding: 5px 5px;
+
+	position: absolute;
+	z-index: 3;
+}

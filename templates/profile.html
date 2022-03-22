@@ -12,7 +12,7 @@
 	
 	<script type="text/javascript">
 		
-		// For Mobile
+		// For Mobile - ToolTip Scripts since CSS's hover is inadequate for mobile browsers.
 		$(document).ready(function(){
 
 			$.each($('.champ-img'), function(key,value){
@@ -34,18 +34,104 @@
 					.addClass('tooltiptext-hidden');
 				});
 			});
-
 			
+		});
+
+		$(document).on("mouseenter", ".tooltiptext-visible", function(e) {
+			$(this).addClass('tooltiptext-hidden').removeClass('tooltiptext-visible');
+		});
+	</script>
+	
+	<script type="text/javascript">
+		
+		$(document).ready(function(key,value){
+			
+			$.each($('.item-img'), function(key,value){
+				$(this).hover(function(e){
+					//alert('here');
+
+					$.each($('.tooltiptext-item-visible'), function(key,value){
+						$(this).removeClass('tooltiptext-item-visible')
+						$(this).addClass('tooltiptext-item-hidden');
+					});
+
+
+					$(this).children('span')
+					.addClass('tooltiptext-item-visible')
+					.removeClass('tooltiptext-item-hidden');
+
+				}, function(){
+					$(this).children('span')
+					.removeClass('tooltiptext-item-visible')
+					.addClass('tooltiptext-item-hidden');
+				});
+			});
+		});
+
+		$(document).on("mouseenter", ".tooltiptext-item-visible", function(e) {
+			$(this).addClass('tooltiptext-item-hidden').removeClass('tooltiptext-item-visible');
 		});
 
 	</script>
 
 	<script type="text/javascript">
+		$(document).ready(function(key,value){
+			
+			$.each($('.runes-img'), function(key,value){
+				$(this).hover(function(e){
+					//alert('here');
+
+					$.each($('.tooltiptext-visible'), function(key,value){
+						$(this).removeClass('tooltiptext-visible')
+						$(this).addClass('tooltiptext-hidden');
+					});
+
+
+					$(this).children('span')
+					.addClass('tooltiptext-visible')
+					.removeClass('tooltiptext-hidden');
+
+				}, function(){
+					$(this).children('span')
+					.removeClass('tooltiptext-visible')
+					.addClass('tooltiptext-hidden');
+				});
+			});
+		});
+
 		$(document).on("mouseenter", ".tooltiptext-visible", function(e) {
-   			$(this).addClass('tooltiptext-hidden').removeClass('tooltiptext-visible');
+			$(this).addClass('tooltiptext-hidden').removeClass('tooltiptext-visible');
 		});
 	</script>
-	
+
+	<script type="text/javascript">
+		$(document).ready(function(key,value){
+			
+			$.each($('.summ-img'), function(key,value){
+				$(this).hover(function(e){
+
+					$.each($('.tooltiptext-summoner-visible'), function(key,value){
+						$(this).removeClass('tooltiptext-summoner-visible')
+						$(this).addClass('tooltiptext-summoner-hidden');
+					});
+
+
+					$(this).children('span')
+					.addClass('tooltiptext-summoner-visible')
+					.removeClass('tooltiptext-summoner-hidden');
+
+				}, function(){
+					$(this).children('span')
+					.removeClass('tooltiptext-summoner-visible')
+					.addClass('tooltiptext-summoner-hidden');
+				});
+			});
+		});
+
+		$(document).on("mouseenter", ".tooltiptext-summoner-visible", function(e) {
+			$(this).addClass('tooltiptext-summoner-hidden').removeClass('tooltiptext-summoner-visible');
+		});
+	</script>
 
 </head>
 <body>
@@ -72,7 +158,7 @@
 			<div class="update-profile">
 
 				<button class="update-profile-btn" onclick="javascript:window.location.reload();">Update</button>
-			
+
 			</div>
 			<div class="summoner-level">
 				<p>{{lvl}}</p>
@@ -392,7 +478,7 @@
 
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][0]['image']['full']}}">
 
-							<span class='tooltiptext-summoner'>
+							<span class='tooltiptext-summoner-hidden'>
 								<p class='spell-name'>{{match[3]['player_summoner_details'][0]['name']}}</p>
 								<p class='spell-description'>{{match[3]['player_summoner_details'][0]['description']|safe}}</p>
 							</span>
@@ -404,7 +490,7 @@
 
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][1]['image']['full']}}">
 
-							<span class='tooltiptext-summoner'>
+							<span class='tooltiptext-summoner-hidden'>
 								<p class='spell-name'>{{match[3]['player_summoner_details'][1]['name']}}</p>
 								<p class='spell-description'>{{match[3]['player_summoner_details'][1]['description']|safe}}</p>
 							</span>
@@ -418,7 +504,7 @@
 						<div class='runes-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['primary']['icon']}}">
 
-							<span class='tooltiptext'>
+							<span class='tooltiptext-hidden'>
 								<p class='rune-name'>{{match[3]['player_runes']['primary']['name']}}</p>
 								<p class='rune-details'>{{match[3]['player_runes']['primary']['longDesc']|safe}}</p>
 							</span>
@@ -427,7 +513,7 @@
 
 						<div class='runes-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['secondary']['icon']}}">
-							<span class='tooltiptext'>
+							<span class='tooltiptext-hidden'>
 								<p class='rune-name'>{{match[3]['player_runes']['secondary']['name']}}</p>
 								<p class='rune-details'>{{match[3]['player_runes']['secondary']['longDesc']|safe}}</p>
 							</span>
@@ -460,7 +546,7 @@
 						<div class='item-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][i]}}.png">
 							
-							<span class='tooltiptext-item'>
+							<span class='tooltiptext-item-hidden'>
 								<p class='item-name'>{{match[3]['player_item_details'][i]['name']}}</p>
 								<p class='item-details'>{{match[3]['player_item_details'][i]['description']|safe}}</p>
 							</span>
@@ -480,7 +566,7 @@
 						<div class='item-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][6]}}.png">
 							
-							<span class='tooltiptext-item'>
+							<span class='tooltiptext-item-hidden'>
 								<p class='item-name'>{{match[3]['player_item_details'][6]['name']}}</p>
 								<p class='item-details'>{{match[3]['player_item_details'][6]['description']|safe}}</p>
 							</span>
@@ -496,7 +582,7 @@
 
 						<div class='champ-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
-							<span class='tooltiptext'>{{c}}</span>
+							<span class='tooltiptext-hidden'>{{c}}</span>
 						</div>
 
 						{% endfor %}
@@ -517,7 +603,7 @@
 
 						<div class='champ-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
-							<span class='tooltiptext'>{{c}}</span>
+							<span class='tooltiptext-hidden'>{{c}}</span>
 						</div>
 
 						{% endfor %}
@@ -568,7 +654,7 @@
 
 											<div class='champ-img'>
 												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
-												<span class='tooltiptext'>{{v}}</span>
+												<span class='tooltiptext-hidden'>{{v}}</span>
 
 												<div class='player-level'>	
 													<p>{{match[-1]['player_levels'][k]}}</p>
@@ -580,7 +666,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
 													</span>
@@ -591,7 +677,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
 													</span>
@@ -605,7 +691,7 @@
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
 
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
 													</span>
@@ -614,7 +700,7 @@
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
 
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
 													</span>
@@ -676,7 +762,7 @@
 
 												<div class ='item-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
-													<span class='tooltiptext-item'>
+													<span class='tooltiptext-item-hidden'>
 														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
 														
 														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
@@ -785,7 +871,7 @@
 
 											<div class='champ-img'>
 												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
-												<span class='tooltiptext'>{{v}}</span>
+												<span class='tooltiptext-hidden'>{{v}}</span>
 
 												<div class='player-level'>	
 													<p>{{match[-1]['player_levels'][k]}}</p>
@@ -797,7 +883,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
 													</span>
@@ -808,7 +894,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
 													</span>
@@ -822,7 +908,7 @@
 												
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
 													</span>
@@ -830,7 +916,7 @@
 
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
 													</span>
@@ -891,7 +977,7 @@
 
 												<div class ='item-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
-													<span class='tooltiptext-item'>
+													<span class='tooltiptext-item-hidden'>
 														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
 														
 														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
@@ -946,7 +1032,7 @@
 
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][0]['image']['full']}}">
 
-							<span class='tooltiptext-summoner'>
+							<span class='tooltiptext-summoner-hidden'>
 								<p class='spell-name'>{{match[3]['player_summoner_details'][0]['name']}}</p>
 								<p class='spell-description'>{{match[3]['player_summoner_details'][0]['description']|safe}}</p>
 							</span>
@@ -958,7 +1044,7 @@
 
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[3]['player_summoner_details'][1]['image']['full']}}">
 
-							<span class='tooltiptext-summoner'>
+							<span class='tooltiptext-summoner-hidden'>
 								<p class='spell-name'>{{match[3]['player_summoner_details'][1]['name']}}</p>
 								<p class='spell-description'>{{match[3]['player_summoner_details'][1]['description']|safe}}</p>
 							</span>
@@ -972,7 +1058,7 @@
 						<div class='runes-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['primary']['icon']}}">
 
-							<span class='tooltiptext'>
+							<span class='tooltiptext-hidden'>
 								<p class='rune-name'>{{match[3]['player_runes']['primary']['name']}}</p>
 								<p class='rune-details'>{{match[3]['player_runes']['primary']['longDesc']|safe}}</p>
 							</span>
@@ -982,7 +1068,7 @@
 						<div class='runes-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[3]['player_runes']['secondary']['icon']}}">
 
-							<span class='tooltiptext'>
+							<span class='tooltiptext-hidden'>
 								<p class='rune-name'>{{match[3]['player_runes']['secondary']['name']}}</p>
 								<p class='rune-details'>{{match[3]['player_runes']['secondary']['longDesc']|safe}}</p>
 							</span>
@@ -1016,7 +1102,7 @@
 						<div class='item-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][i]}}.png">
 							
-							<span class='tooltiptext-item'>
+							<span class='tooltiptext-item-hidden'>
 								<p class='item-name'>{{match[3]['player_item_details'][i]['name']}}</p>
 								<p class='item-details'>{{match[3]['player_item_details'][i]['description']|safe}}</p>
 							</span>
@@ -1039,7 +1125,7 @@
 						<div class='item-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[3]['player_items'][6]}}.png">
 							
-							<span class='tooltiptext-item'>
+							<span class='tooltiptext-item-hidden'>
 								<p class='item-name'>{{match[3]['player_item_details'][6]['name']}}</p>
 								<p class='item-details'>{{match[3]['player_item_details'][6]['description']|safe}}</p>
 							</span>
@@ -1057,7 +1143,7 @@
 
 						<div class='champ-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
-							<span class='tooltiptext'>{{c}}</span>
+							<span class='tooltiptext-hidden'>{{c}}</span>
 						</div>
 
 						{% endfor %}
@@ -1078,7 +1164,7 @@
 
 						<div class='champ-img'>
 							<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{c}}.png">
-							<span class='tooltiptext'>{{c}}</span>
+							<span class='tooltiptext-hidden'>{{c}}</span>
 						</div>
 						{% endfor %}
 
@@ -1127,7 +1213,7 @@
 
 											<div class='champ-img'>
 												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
-												<span class='tooltiptext'>{{v}}</span>
+												<span class='tooltiptext-hidden'>{{v}}</span>
 
 												<div class='player-level'>	
 													<p>{{match[-1]['player_levels'][k]}}</p>
@@ -1139,7 +1225,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
 													</span>
@@ -1150,7 +1236,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
 													</span>
@@ -1163,7 +1249,7 @@
 												
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
 													</span>
@@ -1171,7 +1257,7 @@
 
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
 													</span>
@@ -1231,7 +1317,7 @@
 
 												<div class ='item-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
-													<span class='tooltiptext-item'>
+													<span class='tooltiptext-item-hidden'>
 														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
 														
 														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>
@@ -1342,7 +1428,7 @@
 
 											<div class='champ-img'>
 												<img src='/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/champion/{{v}}.png'>
-												<span class='tooltiptext'>{{v}}</span>
+												<span class='tooltiptext-hidden'>{{v}}</span>
 
 												<div class='player-level'>	
 													<p>{{match[-1]['player_levels'][k]}}</p>
@@ -1354,7 +1440,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][0]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][0]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][0]['description']|safe}}</p>
 													</span>
@@ -1365,7 +1451,7 @@
 
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/spell/{{match[-1]['player_summoner_details'][k][1]['image']['full']}}">
 
-													<span class='tooltiptext-summoner'>
+													<span class='tooltiptext-summoner-hidden'>
 														<p class='spell-name'>{{match[-1]['player_summoner_details'][k][1]['name']}}</p>
 														<p class='spell-description'>{{match[-1]['player_summoner_details'][k][1]['description']|safe}}</p>
 													</span>
@@ -1378,7 +1464,7 @@
 												
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['primary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['primary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['primary']['longDesc']|safe}}</p>
 													</span>
@@ -1386,7 +1472,7 @@
 
 												<div class='runes-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/img/{{match[-1]['player_runes'][k]['secondary']['icon']}}">
-													<span class='tooltiptext'>
+													<span class='tooltiptext-hidden'>
 														<p class='rune-name'>{{match[-1]['player_runes'][k]['secondary']['name']}}</p>
 														<p class='rune-details'>{{match[-1]['player_runes'][k]['secondary']['longDesc']|safe}}</p>
 													</span>
@@ -1446,7 +1532,7 @@
 
 												<div class ='item-img'>
 													<img src="/static/images/12.5.1/dragontail-12.5.1/12.5.1/img/item/{{match[-1]['player_items'][k][i]}}.png">
-													<span class='tooltiptext-item'>
+													<span class='tooltiptext-item-hidden'>
 														<p class='item-name'>{{match[-1]['player_item_details'][k][i]['name']}}</p>
 														
 														<p class='item-details'>{{match[-1]['player_item_details'][k][i]['description']|safe}}</p>

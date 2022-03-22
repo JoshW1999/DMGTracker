@@ -1,4 +1,36 @@
 <div id='ranked_stats'>
+		<script type="text/javascript">
+		
+		// For Mobile - ToolTip Scripts since CSS's hover is inadequate for mobile browsers.
+		$(document).ready(function(){
+
+			$.each($('.champ-img'), function(key,value){
+				$(this).hover(function(e){
+					
+
+					$.each($('.tooltiptext-visible'), function(key,value){
+						$(this).removeClass('tooltiptext-visible')
+						$(this).addClass('tooltiptext-hidden');
+					});
+
+					$(this).children('span').addClass('tooltiptext-visible')
+					$(this).children('span').removeClass('tooltiptext-hidden');
+
+
+				}, function(){
+					$(this).children('span')
+					.removeClass('tooltiptext-visible')
+					.addClass('tooltiptext-hidden');
+				});
+			});
+			
+		});
+
+		$(document).on("mouseenter", ".tooltiptext-visible", function(e) {
+			$(this).addClass('tooltiptext-hidden').removeClass('tooltiptext-visible');
+		});
+	</script>
+	
 	<!-- model-->
 	<div class='stats-header'>	
 
@@ -11,6 +43,7 @@
 	<div class='ranked-stats-row'>
 		<div class='champ-img'>	
 			<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{x}}_0.jpg">
+			<span class='tooltiptext-hidden'>{{x}}</span>
 		</div>
 
 		<div class='champ-name'>
