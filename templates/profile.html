@@ -15,10 +15,23 @@
 		// For Mobile
 		$(document).ready(function(){
 
-			$.each($('.tooltiptext'), function(key,value){
-				$(this).click(function(e){
-					$(this).css("visibility", 'hidden');
-				});
+			$.each($('.champ-img'), function(key,value){
+				$(this).hover(function(e){
+					
+
+					$.each($('.tooltiptext-visible'), function(key,value){
+						$(this).removeClass('tooltiptext-visible')
+						$(this).addClass('tooltiptext-hidden');
+					});
+
+					$(this).children('span').addClass('tooltiptext-visible')
+					$(this).children('span').removeClass('tooltiptext-hidden');
+
+
+				}, function(){
+					$(this).children('span')
+					.removeClass('tooltiptext-visible')
+					.addClass('tooltiptext-hidden')});
 			});
 		});
 
@@ -108,7 +121,7 @@
 				<div class='ranked-stats-row'>
 					<div class='champ-img'>	
 						<img src="/static/images/12.5.1/dragontail-12.5.1/img/champion/tiles/{{x}}_0.jpg">
-						<span class='tooltiptext'>{{x}}</span>
+						<span class='tooltiptext-hidden'>{{x}}</span>
 					</div>
 
 					<div class='champ-name'>

@@ -446,7 +446,7 @@ body{
 	float: left;
 	display: block;
 
-	height: 66px;
+	height: 80px;
 	width: 68px;
 	overflow: hidden;
 
@@ -1311,7 +1311,7 @@ th{
 
 
 .champ-img:hover .tooltiptext{
-	visibility: visible !important;
+	visibility: visible;
 }
 
 .summ-img:hover .tooltiptext-summoner{
@@ -1377,6 +1377,41 @@ th{
 	text-align: center;
 }
 
+.tooltiptext-hidden{
+	visibility: hidden; 
+	width: auto; 
 
+	font-size: 12px;
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
 
+	text-align: left; 
+
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	padding: 5px 5px;
+
+	position: absolute; 
+	z-index: 3; 
+}
+
+.tooltiptext-visible{
+	visibility: visible; 
+	width: auto; 
+
+	font-size: 12px;
+	background-color: rgba(105, 105, 105, 0.8);
+	color: white;
+
+	text-align: left; 
+
+	border: 1px solid silver;
+	border-radius: 15px;
+
+	padding: 5px 5px;
+
+	position: absolute; 
+	z-index: 3; 	
+}
 
