@@ -35,11 +35,10 @@ def news(server='na1'):
 
 	if request.method == 'POST':
 
-		if request.form['ps']: 
-			acc_name = request.form['ps']
-			acc_server = request.form['server-select']
-			print(acc_server)
-			return redirect(url_for('profile', prof=acc_name, server=acc_server))
+		if request.form['ss']:
+			new_acc_name = request.form['ss']
+			new_acc_server = request.form['server-select']
+			return redirect(url_for('profile', prof=new_acc_name, server=new_acc_server))	
 
 	else: 
 		return render_template('news.html', server=server)
@@ -233,6 +232,8 @@ def update_match_history():
 
 	old_matches = ast.literal_eval(html.unescape(request.values.get('matches')))
 	new_matches = new_get_recent_games[0]
+	
+
 	matches = old_matches + new_matches
 
 	old_recent_game_stats = ast.literal_eval(html.unescape(request.values.get('recent_game_stats')))

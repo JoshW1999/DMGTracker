@@ -99,6 +99,8 @@ body{
 	height: 50px;
 }
 
+
+
 .top-section .live-game .button:hover{
 	background-color: #b8ceed;
 }
@@ -723,7 +725,7 @@ body{
 	position: absolute;
 	float: left;
 	width: 598px;
-	height: 600px;
+	height: auto;
 
 	border: 1px solid grey;
 
@@ -1309,7 +1311,7 @@ th{
 
 
 .champ-img:hover .tooltiptext{
-	visibility: visible;
+	visibility: visible !important;
 }
 
 .summ-img:hover .tooltiptext-summoner{
@@ -1374,3 +1376,7 @@ th{
 
 	text-align: center;
 }
+
+
+
+

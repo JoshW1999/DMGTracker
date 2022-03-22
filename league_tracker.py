@@ -322,6 +322,9 @@ class Account:
 
 				player_details['player_levels'][p['summonerName']] = p['champLevel']
 				
+				if game_length <= 0:
+					game_length = 1
+
 				player_details['player_cs'][p['summonerName']] = (p['totalMinionsKilled'] + p['neutralMinionsKilled'],
 																	"{:.2f}".format((p['totalMinionsKilled'] + p['neutralMinionsKilled'])/(game_length/60)))
 					
@@ -329,13 +332,19 @@ class Account:
 				primary = p['perks']['styles'][0]['style']
 				secondary = p['perks']['styles'][1]['style']
 				
-				keystone = p['perks']['styles'][0]['selections'][0]['perk']
+				# Technically possible to not have runes, this safeguards that possiblity. 
+				if primary == 0: 
+					keystone = 0
+					player_details['player_runes'][p['summonerName']] = {'primary': 0, 
+																		'secondary': 0}
+				else: 
+					keystone = p['perks']['styles'][0]['selections'][0]['perk']
 
-				#print(runes_dict.get(primary)['slots'][keystone])
+					#print(runes_dict.get(primary)['slots'][keystone])
 
-				#print(p['perks'])
+					#print(p['perks'])
 
-				player_details['player_runes'][p['summonerName']] = {'primary': rune_keystones.get(primary,0).get(keystone,0), 
+					player_details['player_runes'][p['summonerName']] = {'primary': rune_keystones.get(primary,0).get(keystone,0), 
 																		'secondary': runes_dict.get(secondary,0)}
 
 				player_details['player_items'][p['summonerName']] = [p['item%d' % i] for i in range(7)] 
@@ -538,3 +547,6 @@ class Account:
 			
 
 		return
+
+acc = Account('na1','Darzival')
+acc.get_recent_games()
