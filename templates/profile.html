@@ -31,10 +31,19 @@
 				}, function(){
 					$(this).children('span')
 					.removeClass('tooltiptext-visible')
-					.addClass('tooltiptext-hidden')});
+					.addClass('tooltiptext-hidden');
+				});
 			});
+
+			
 		});
 
+	</script>
+
+	<script type="text/javascript">
+		$(document).on("mouseenter", ".tooltiptext-visible", function(e) {
+   			$(this).addClass('tooltiptext-hidden').removeClass('tooltiptext-visible');
+		});
 	</script>
 	
 
