@@ -6,7 +6,24 @@
 	<link rel="shortcut icon" href="#">
 	<title>DMG Tracker</title>
 	<link rel="stylesheet" type="text/css" href="static/stylesheets/style.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+	<script type="text/javascript">
+		$(window).bind("pageshow", function(event) {
+    		$("#loading-icon").hide();
+    		$("#go").show();
+    		$("#sb").css('pointer-events', 'all');
+		});
+
+		function loading(){
+			$(document.getElementById('loading-icon')).show();
+			$(document.getElementById('go')).hide();
+			$(document.getElementById('sb')).css('pointer-events', 'none');
+		}
+	</script>
 </head>
+
+
 <body>
 
 
@@ -45,7 +62,10 @@
 
 
 				<input class='main-search-bar' type="text" placeholder='Name...' name="ps">
-				<button class='main-submit-button' type='submit' name='sb'>Go</button>
+				<button class='main-submit-button' type='submit' name='sb' id='sb' onclick='loading()'>
+					<p id="go">Go</p>
+					<div id='loading-icon'></div>
+				</button>
 			</form>
 		</div>
 

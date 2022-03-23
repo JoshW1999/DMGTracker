@@ -17,15 +17,14 @@ app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
 
 @app.route('/', methods=['POST', 'GET'])
 def home():
-
+	
 	if request.method == 'POST':
-
-		if request.form['ps']: 
+		if request.form['ps']:
 			acc_name = request.form['ps']
 			acc_server = request.form['server-select']
-			print(acc_server)
 			return redirect(url_for('profile', prof=acc_name, server=acc_server))
-
+		else:
+			return render_template('index.html')
 	else: 
 		return render_template('index.html')
 
@@ -39,7 +38,8 @@ def news(server='na1'):
 			new_acc_name = request.form['ss']
 			new_acc_server = request.form['server-select']
 			return redirect(url_for('profile', prof=new_acc_name, server=new_acc_server))	
-
+		else: 
+			return redirect(request.url)
 	else: 
 		return render_template('news.html', server=server)
 
@@ -53,7 +53,8 @@ def profile(prof, server='na1'):
 			new_acc_name = request.form['ss']
 			new_acc_server = request.form['server-select']
 			return redirect(url_for('profile', prof=new_acc_name, server=new_acc_server))	 
-
+		else:
+			return redirect(request.url)
 	# Prevents an unknown issue from occuring
 	elif prof == 'favicon.ico': 
 		return ''
@@ -180,6 +181,8 @@ def live_game(prof, server):
 			new_acc_server = request.form['server-select']
 			return redirect(url_for('profile', prof=new_acc_name, server=new_acc_server))	
 
+		else: 
+			return redirect(request.url)
 	else: 
 		acc = league_tracker.Account(server, prof)
 

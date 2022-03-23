@@ -52,8 +52,11 @@ html{
 
 .hero .main-search .main-submit-button{
 	float: left;
-	width: 10%;
-	padding: 10px;
+	width: 70px;
+	
+	height: 42px;
+	padding: 5px;
+
 	background: #2196F3;
 	color: white;
 	font-size: 17px;
@@ -66,15 +69,15 @@ html{
 	background-color: #b8ceed;
 }
 
+#loading-icon{
+	
+	margin-left: 6px;
+	height: 25px;
+	width: 45px;
 
+	background: url(submit_load_gif.gif) no-repeat 50% 50%; 
 
-/*
-.hero .main-search .server-select-dropdown{
-	font-family: Arial; 
-
-	position: relative;
-	float: left;
-	}*/
-
-
-
+}
+.main-submit-button p{
+	margin: 0;
+}

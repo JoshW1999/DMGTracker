@@ -75,3 +75,15 @@
 .navbar a:hover{
 	font-weight: bold;
 }
+
+#secondary-loading-icon{
+	
+	height: 25px;
+	width: 45px;
+
+	background: url(submit_load_gif.gif) no-repeat 50% 50%; 
+}
+
+#secondary-go{
+	margin: 0;
+}

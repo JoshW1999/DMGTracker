@@ -19,6 +19,10 @@ html{
 	display: flex; 
 }
 
+.navbar .search-nav .secondary-search button:hover{
+	background-color: #b8ceed;
+}
+
 .navbar{
 	top: 0;
 }

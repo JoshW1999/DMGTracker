@@ -15,6 +15,10 @@ body{
 	display: flex; 
 }
 
+.navbar .search-nav .secondary-search button:hover{
+	background-color: #b8ceed;
+}
+
 
 .top-section .summoner-icon img{
 	width: 200px;
@@ -970,7 +974,7 @@ th{
 	margin: 0;
 }
 
-.expanded-details .objective-stats .kills-gold-blue{
+.expanded-details .objective-stats .kills-gold-blue{background-color: #b8ceed;
 	width: 120px;
 	height: 40px;
 

@@ -11,6 +11,10 @@ body{
 	display: flex; 
 }
 
+.navbar .search-nav .secondary-search button:hover{
+	background-color: #b8ceed;
+}
+
 .not-in-game .container{
 	width: 40%;
 	margin: auto;

@@ -291,12 +291,12 @@ class Account:
 			objective_details = curr_match_info['teams']
 
 			if len(objective_details) == 2:
-				red_team_objectives = {'barons': objective_details[0]['objectives']['baron']['kills'],
+				blue_team_objectives = {'barons': objective_details[0]['objectives']['baron']['kills'],
 									'dragons': objective_details[0]['objectives']['dragon']['kills'],
 									'towers': objective_details[0]['objectives']['tower']['kills'],
 									'kills': objective_details[0]['objectives']['champion']['kills'],
 									'win': 'Victory' if objective_details[0]['win'] else 'Defeat'}
-				blue_team_objectives = {'barons': objective_details[1]['objectives']['baron']['kills'],
+				red_team_objectives = {'barons': objective_details[1]['objectives']['baron']['kills'],
 									'dragons': objective_details[1]['objectives']['dragon']['kills'],
 									'towers': objective_details[1]['objectives']['tower']['kills'],
 									'kills': objective_details[1]['objectives']['champion']['kills'],
@@ -340,10 +340,6 @@ class Account:
 				else: 
 					keystone = p['perks']['styles'][0]['selections'][0]['perk']
 
-					#print(runes_dict.get(primary)['slots'][keystone])
-
-					#print(p['perks'])
-
 					player_details['player_runes'][p['summonerName']] = {'primary': rune_keystones.get(primary,0).get(keystone,0), 
 																		'secondary': runes_dict.get(secondary,0)}
 
@@ -375,8 +371,6 @@ class Account:
 						recent_game_stats[acc_details['player_champs']]['in_game_time'] += game_length
 
 						recent_game_stats[acc_details['player_champs']]['cs'] += acc_details['player_cs'][0]
-
-						#x_kda = list(map(lambda x,y: x+y, acc_details['player_kdas'][:3], recent_game_stats[acc_details['player_champs']]['kda'])) 
 
 						recent_game_stats[acc_details['player_champs']]['kda'] = list(map(lambda x,y: x+y, acc_details['player_kdas'][:3],recent_game_stats[acc_details['player_champs']]['kda']))
 
@@ -419,7 +413,7 @@ class Account:
 				acc_details['player_kp'] = '{:.2f}'.format((acc_details['player_kdas'][0]+acc_details['player_kdas'][2])/blue_team_objectives['kills']*100) if (blue_team_objectives is not None and blue_team_objectives['kills'] > 0) else 'Perfect'  							
 
 
-			player_details['teams'] = [blue_champs, red_champs]
+			player_details['teams'] = [red_champs, blue_champs]
 
 			match_details.append([game_length, Account.how_long_ago(ms_since_game), game_type, acc_details, blue_team_objectives, red_team_objectives, player_details])
 
@@ -547,6 +541,3 @@ class Account:
 			
 
 		return
-
-acc = Account('na1','Darzival')
-acc.get_recent_games()

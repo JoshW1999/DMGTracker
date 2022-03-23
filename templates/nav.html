@@ -24,6 +24,22 @@
 		}, false);
 
 	</script>
+
+	<script type="text/javascript">
+		$(window).bind("pageshow", function(event) {
+    		$("#secondary-loading-icon").hide();
+    		$("#secondary-go").show();
+    		$("#ssb").css('pointer-events', 'all');
+		});
+
+		function loading_nav(){
+			$(document.getElementById('secondary-loading-icon')).show();
+			$(document.getElementById('secondary-go')).hide();
+			$(document.getElementById('ssb')).css('pointer-events', 'none');
+		}
+	</script>
+
+
 </head>
 
 <body>
@@ -87,7 +103,15 @@
 						</div>
 						<div class='secondary-search'>
 							<input class='secondary-search-bar' type="text" placeholder='Name...' name="ss">
-							<button class='secondary-submit-button' type='submit' name='ssb'>Go</button>
+							<button class='secondary-submit-button' type='submit' name='ssb' id='ssb' onclick='loading_nav()'>
+								<p id='secondary-go'>Go</p>
+								<div id='secondary-loading-icon'></div>
+							</button>
+
+							<script type="text/javascript">
+								// Forces disable after page loaded.
+								$(document.getElementById('secondary-loading-icon')).hide();
+							</script>
 						</div>
 					</form>
 				</ul>
