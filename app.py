@@ -192,6 +192,10 @@ def live_game(prof, server):
 
 queue_map = {'ARAM': 'normal', 'Ranked': 'ranked', 'Normal': 'normal', 'Clash': 'ranked', 'All': None}
 
+@app.route('/riot.txt')
+def riot_txt():
+	return render_template('riot.txt')
+
 def merge_game_stats(s1, s2):
 	ret = {}
 	for k in s1.keys():
