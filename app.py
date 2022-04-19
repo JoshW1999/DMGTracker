@@ -9,7 +9,7 @@ import json
 import html
 import ast
 
-lol_watcher = LolWatcher('RGAPI-f409d893-be65-4be5-b87d-ae4ab4cc7e71')
+lol_watcher = LolWatcher('RGAPI-13d540e6-61d9-4cbc-adeb-fa56eee853e9')
 
 app = Flask(__name__)
 app.secret_key = 'A0Zr98j/3yX R~XHH!jmN]LWX/,?RT'
